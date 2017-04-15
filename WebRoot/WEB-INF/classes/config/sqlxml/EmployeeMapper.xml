@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EmployeeMapper">
+	<resultMap type="demo.beans.Employee" id="EmployeeResult">
+		<!--id为主键result为属性 column="数据库中的属性名" jdbcType="数据库中的属性类型" property="javaBean中的字段名" -->
+		<id column="id" jdbcType="INTEGER" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="age" jdbcType="INTEGER" property="age"/>
+		<result column="sex" jdbcType="VARCHAR" property="sex"/>
+	</resultMap>
+	 
+	<!--  -->
+	<select id="queryAllEmployee" resultType="demo.beans.Employee">  
+       select id,name,age,sex from employee;
+    </select>
+    
+    <!--  -->
+    <select id="queryEmployeeById" parameterType="int" resultType="demo.beans.Employee">  
+       select id,name,age,sex from employee where id=#{id};
+    </select>  
+    
+    <!--  -->
+    <insert id="addEmployee" parameterType="demo.beans.Employee">
+    	insert into employee(id,name,age,sex) values (#{id},#{name},#{age},#{sex})
+    </insert>
+    
+    <!--  -->
+    <update id="editEmployee" parameterType="demo.beans.Employee">
+    	update employee set name=#{name},age=#{age},sex=#{sex} where id=#{id}
+    </update>
+    
+    <!--  -->
+    <delete id="deleteEmployeeById" parameterType="int">
+    	 delete from employee where id=#{id}
+    </delete>
+</mapper>  

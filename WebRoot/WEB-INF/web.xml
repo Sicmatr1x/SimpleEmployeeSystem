@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!--用来启动 log4jConfigLocation的servlet -->
+	<servlet>
+		<servlet-name>Log4JInitServlet</servlet-name>
+		<servlet-class>logger.Log4JInitServlet</servlet-class>
+		<init-param>
+			<param-name>log4j-properties-location</param-name>
+			<param-value>/WEB-INF/classes/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<!-- 具体页面 -->
+	<!-- http://localhost:8080/SimpleEmployeeSystem/EmployeeList -->
+	<servlet>
+		<servlet-name>EmployeeList</servlet-name>
+		<servlet-class>servlet.EmployeeList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeList</servlet-name>
+		<url-pattern>/EmployeeList</url-pattern>
+	</servlet-mapping>
+</web-app>
