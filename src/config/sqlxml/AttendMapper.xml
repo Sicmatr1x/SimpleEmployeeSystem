@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AttendMapper">
+	 
+	<!-- 显示全部 -->
+	<select id="queryAllAttend" resultType="demo.beans.Attend">  
+       select id,empid,attendDate,attendType from Attend;
+    </select>
+    
+    <!-- 根据主键查询 -->
+    <select id="queryAttendById" parameterType="int" resultType="demo.beans.Attend">  
+       select id,empid,attendDate,attendType from Attend where id=#{id};
+    </select>
+    
+    <!-- 根据empid查询 -->
+    <select id="queryAttendByEmpId" parameterType="int" resultType="demo.beans.Attend">  
+       select id,empid,attendDate,attendType from Attend where empid=#{empid};
+    </select>  
+    
+    <!-- 添加 -->
+    <insert id="addAttend" parameterType="demo.beans.Attend">
+    	insert into Attend(id,empid,attendDate,attendType) values (#{id},#{empid},#{attendDate},#{attendType})
+    </insert>
+    
+    <!-- 根据主键修改 -->
+    <update id="editAttend" parameterType="demo.beans.Attend">
+    	update Attend set attendDate=#{attendDate},attendType=#{attendType} where id=#{id}
+    </update>
+    
+    <!-- 根据主键删除 -->
+    <delete id="deleteAttendById" parameterType="int">
+    	 delete from Attend where id=#{id}
+    </delete>
+</mapper>  

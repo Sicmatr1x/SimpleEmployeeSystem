@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="JobMapper">
+	 
+	<!-- 显示全部 -->
+	<select id="queryAllJob" resultType="demo.beans.Job">  
+       select id, empid, jobType, jobLevel, baseSalary, department from Job;
+    </select>
+    
+    <!-- 根据主键查询 -->
+    <select id="queryJobById" parameterType="int" resultType="demo.beans.Job">  
+       select id, empid, jobType, jobLevel, baseSalary, department from Job where id=#{id};
+    </select>
+    
+    <!-- 根据empid查询 -->
+    <select id="queryJobByEmpId" parameterType="int" resultType="demo.beans.Job">  
+       select id, empid, jobType, jobLevel, baseSalary, department from Job where empid=#{empid};
+    </select>  
+    
+    <!-- 添加 -->
+    <insert id="addJob" parameterType="demo.beans.Job">
+    	insert into Job(id, empid, jobType, jobLevel, baseSalary, department) 
+    	values (#{id},#{empid},#{jobType},#{jobLevel},#{baseSalary},#{department})
+    </insert>
+    
+    <!-- 根据主键修改 -->
+    <update id="editJob" parameterType="demo.beans.Job">
+    	update Job set jobType=#{jobType},jobLevel=#{jobLevel},baseSalary=#{baseSalary},department=#{department}
+    	where id=#{id}
+    </update>
+    
+    <!-- 根据主键删除 -->
+    <delete id="deleteJobById" parameterType="int">
+    	 delete from Job where id=#{id}
+    </delete>
+</mapper>  

@@ -12,27 +12,27 @@
 		<result column="sex" jdbcType="VARCHAR" property="sex"/>
 	</resultMap>
 	 
-	<!--  -->
+	<!-- 显示全部 -->
 	<select id="queryAllEmployee" resultType="demo.beans.Employee">  
        select id,name,age,sex from employee;
     </select>
     
-    <!--  -->
+    <!-- 根据主键查询 -->
     <select id="queryEmployeeById" parameterType="int" resultType="demo.beans.Employee">  
        select id,name,age,sex from employee where id=#{id};
     </select>  
     
-    <!--  -->
+    <!-- 添加 -->
     <insert id="addEmployee" parameterType="demo.beans.Employee">
     	insert into employee(id,name,age,sex) values (#{id},#{name},#{age},#{sex})
     </insert>
     
-    <!--  -->
+    <!-- 根据主键修改 -->
     <update id="editEmployee" parameterType="demo.beans.Employee">
     	update employee set name=#{name},age=#{age},sex=#{sex} where id=#{id}
     </update>
     
-    <!--  -->
+    <!-- 根据主键删除 -->
     <delete id="deleteEmployeeById" parameterType="int">
     	 delete from employee where id=#{id}
     </delete>

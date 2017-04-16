@@ -2,23 +2,31 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC">
-            </transactionManager>
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/employee" />
-                <property name="username" value="root" />
-                <property name="password" value="root" />
-            </dataSource>
-        </environment>
-    </environments>
-    
-    <!-- 导入mapper文件 -->
-    <mappers>
-        <mapper resource="config/sqlxml/EmployeeMapper.xml"/>
-        <mapper class="demo.beans.Employee"/>
-    </mappers>
-   
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC">
+			</transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/employee" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 导入mapper文件 -->
+	<mappers>
+		<mapper resource="config/sqlxml/EmployeeMapper.xml" />
+		<mapper class="demo.beans.Employee" />
+		<mapper resource="config/sqlxml/AttendMapper.xml" />
+		<mapper class="demo.beans.Attend" />
+		<mapper resource="config/sqlxml/BenefitMapper.xml" />
+		<mapper class="demo.beans.Benefit" />
+		<mapper resource="config/sqlxml/JobMapper.xml" />
+		<mapper class="demo.beans.Job" />
+		<mapper resource="config/sqlxml/SalaryMapper.xml" />
+		<mapper class="demo.beans.Salary" />
+	</mappers>
+
 </configuration>
