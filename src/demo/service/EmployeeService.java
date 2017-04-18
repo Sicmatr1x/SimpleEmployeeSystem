@@ -2,13 +2,16 @@ package demo.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import demo.beans.Employee;
 import demo.dao.EmployeeDAO;
+
 
 public class EmployeeService {
 
 	private EmployeeDAO employeeDAO = new EmployeeDAO();
-
+	
 	/**
 	 * 
 	 * @return
@@ -17,9 +20,18 @@ public class EmployeeService {
 		return employeeDAO.queryAllEmployee();
 	}
 	
+	public Employee getEmployeeById(int id){
+		return this.employeeDAO.queryEmployeeById(id);
+	}
+	
+	
+	public int editEmployee(Employee employee){
+		return employeeDAO.editEmployee(employee);
+	}
+	
 	
 	public int addEmployee(Employee employee){
-		return this.addEmployee(employee);
+		return this.employeeDAO.addEmployee(employee);
 	}
 
 	public static void main(String[] args) {
