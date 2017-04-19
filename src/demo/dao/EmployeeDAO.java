@@ -103,7 +103,7 @@ public class EmployeeDAO {
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-			// 执行插入
+			// 执行修改
 			int result =  sqlSession.update("EmployeeMapper.editEmployee", employee);
 			sqlSession.commit(); // 提交，不提交不会保存的
 			return result;

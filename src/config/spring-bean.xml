@@ -6,4 +6,17 @@
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	
 	<bean id="employeeService" class="demo.service.EmployeeService"></bean>
+	<bean id="employeeDAO" class="demo.dao.EmployeeDAO"></bean>
+	
+	<bean id="attendService" class="demo.service.AttendService"></bean>
+	<bean id="attendDAO" class="demo.dao.AttendDAO"></bean>
+	
+	<!--<bean id="benefitService" class="demo.service.BenefitService"></bean>-->
+	<bean id="benefitDAO" class="demo.dao.BenefitDAO"></bean>
+	
+	<!--<bean id="jobService" class="demo.service.JobService"></bean>-->
+	<bean id="jobDAO" class="demo.dao.JobDAO"></bean>
+	
+	<!--<bean id="salaryService" class="demo.service.SalaryService"></bean>-->
+	<bean id="salaryDAO" class="demo.dao.SalaryDAO"></bean>
 </beans>

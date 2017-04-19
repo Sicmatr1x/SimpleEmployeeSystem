@@ -2,38 +2,60 @@ package demo.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import demo.beans.Employee;
 import demo.dao.EmployeeDAO;
 
 
 public class EmployeeService {
 
-	private EmployeeDAO employeeDAO = new EmployeeDAO();
+	@Resource(name = "employeeDAO")
+	private EmployeeDAO employeeDAO;
 	
 	/**
-	 * 
+	 * 返回整张Employee表的内容
 	 * @return
 	 */
 	public List<Employee> getAllEmployee() {
 		return employeeDAO.queryAllEmployee();
 	}
 	
+	/**
+	 * 根据id来查询指定员工
+	 * @param id
+	 * @return 查得到返回Employee，查不到返回null
+	 */
 	public Employee getEmployeeById(int id){
 		return this.employeeDAO.queryEmployeeById(id);
 	}
 	
-	
-	public int editEmployee(Employee employee){
-		return employeeDAO.editEmployee(employee);
-	}
-	
-	
+	/**
+	 * 插入员工
+	 * @param employee
+	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
+	 */
 	public int addEmployee(Employee employee){
 		return this.employeeDAO.addEmployee(employee);
 	}
 	
+	/**
+	 * 修改给定id的员工信息
+	 * @param employee
+	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
+	 */
+	public int editEmployee(Employee employee){
+		return employeeDAO.editEmployee(employee);
+	}
+	
+	/**
+	 * 根据员工id来删除员工
+	 * @param id
+	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
+	 */
 	public int deleteEmployee(int id){
 		return this.employeeDAO.deleteEmployee(id);
 	}

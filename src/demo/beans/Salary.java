@@ -1,5 +1,6 @@
 package demo.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author sicmatr1x
  * 
  */
-public class Salary {
+public class Salary implements Serializable {
 	private int id;
 	private int empid;
 	private Date mounth;

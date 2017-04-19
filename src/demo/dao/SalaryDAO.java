@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.PropertyConfigurator;
 
+import demo.beans.Job;
 import demo.beans.Salary;
-
 import demo.db.DBAccess;
 
 public class SalaryDAO {
@@ -63,6 +63,29 @@ public class SalaryDAO {
 				sqlSession.close();
 			}
 			
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据员工id来查询指定记录
+	 * @param id 记录id
+	 * @return 查得到返回Attend，查不到返回null
+	 */
+	public List<Salary> queryAttendByEmpId (int empid){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			// 执行查询
+			return sqlSession.selectList("SalaryMapper.querySalaryByEmpId", empid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(sqlSession != null){
+				sqlSession.close();
+			}
 		}
 		return null;
 	}

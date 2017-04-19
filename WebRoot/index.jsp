@@ -25,7 +25,7 @@
 		<h2 class="project-tagline">This is a simple employee manage system powered by SSM framework.</h2>
 
 		<a href="getEmployeeList" class="btn">EmployeeList</a>
-		<a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">Download .zip</a>
+		<a href="getAttendList" class="btn">AttendList</a>
 		<a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>
 		<a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>
 		<a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>

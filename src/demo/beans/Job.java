@@ -1,12 +1,14 @@
 package demo.beans;
 
+import java.io.Serializable;
+
 /**
  * id, empid, jobType, jobLevel, baseSalary, department
  * 
  * @author sicmatr1x
  * 
  */
-public class Job {
+public class Job implements Serializable {
 	private int id;
 	private int empid;
 	private String jobType;

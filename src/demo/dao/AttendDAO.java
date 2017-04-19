@@ -43,8 +43,8 @@ public class AttendDAO {
 	}
 
 	/**
-	 * 根据id来查询指定员工
-	 * @param id 员工id
+	 * 根据id来查询指定记录
+	 * @param id 记录id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
 	public Attend queryAttendById (int id){
@@ -68,7 +68,30 @@ public class AttendDAO {
 	}
 	
 	/**
-	 * 插入员工
+	 * 根据员工id来查询指定记录
+	 * @param id 记录id
+	 * @return 查得到返回Attend，查不到返回null
+	 */
+	public List<Attend> queryAttendByEmpId (int empid){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			// 执行查询
+			return sqlSession.selectList("AttendMapper.queryAttendByEmpId", empid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(sqlSession != null){
+				sqlSession.close();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 插入记录
 	 * @param Attend
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -120,7 +143,7 @@ public class AttendDAO {
 	}
 	
 	/**
-	 * 根据员工id来删除员工
+	 * 根据员工id来删除记录
 	 * @param id
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
