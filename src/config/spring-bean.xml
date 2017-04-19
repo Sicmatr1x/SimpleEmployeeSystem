@@ -11,7 +11,7 @@
 	<bean id="attendService" class="demo.service.AttendService"></bean>
 	<bean id="attendDAO" class="demo.dao.AttendDAO"></bean>
 	
-	<!--<bean id="benefitService" class="demo.service.BenefitService"></bean>-->
+	<bean id="benefitService" class="demo.service.BenefitService"></bean>
 	<bean id="benefitDAO" class="demo.dao.BenefitDAO"></bean>
 	
 	<!--<bean id="jobService" class="demo.service.JobService"></bean>-->

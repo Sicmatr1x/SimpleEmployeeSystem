@@ -72,7 +72,7 @@ public class BenefitDAO {
 	 * @param id 记录id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
-	public List<Benefit> queryAttendByEmpId (int empid){
+	public List<Benefit> queryBenefitByEmpId (int empid){
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
