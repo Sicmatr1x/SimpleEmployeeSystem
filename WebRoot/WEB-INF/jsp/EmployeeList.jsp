@@ -18,123 +18,100 @@
 <link href="<%=basePath%>resources/css/all.css" rel="stylesheet"
 	type="text/css" />
 </head>
-<script>
-	//获得XMLHttpRequest对象
-	function createXMLHttpRequest() {
-		var xmlHttp;
-		if (window.XMLHttpRequest) {
-			xmlHttp = new XMLHttpRequest();
-			if (xmlHttp.overrideMimeType)
-				xmlHttp.overrideMimeType('text/xml');
-		} else if (window.ActiveXObject) {
-			try {
-				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				try {
-					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e) {
-				}
-			}
-		}
-		return xmlHttp;
-	}
 
+<script type="text/javascript">
+    
+    function openEditWindow(id){
+    	var name=prompt("姓名","");
+    	var age=prompt("年龄","");
+    	var sex=prompt("性别","");
+    	if(name != null && name != "" && age != null && age != "" && sex != null && sex != ""){
+    		
+    		window.location.href='editEmployee?id=' + id + '&name=' + name+ '&age=' + age + '&sex=' + sex;
+    	}else{
+    		alert("属性不能为空！");
+    	}
+    	
+    }
+    
+    function deleteEmployee(id){
+    	window.location.href='deleteEmployee?id=' + id;
+    }
 
-	function addEmployee() {
-		var id = document.getElementById("add_id");
-		var name = document.getElementById("add_name");
-		var age = document.getElementById("add_age");
-		var sex = document.getElementById("add_sex");
-		alert(id.toString() + ";" + name.toString() + ";" + age.toString() + ";" + sex.toString());
-		xmlHttp = createXMLHttpRequest();
-		var url = "http://localhost:8080/SimpleEmployeeSystem/addEmployee?id=" + id +
-		"&name=" + name + "&age=" + age + "&sex=" + sex;
-		xmlHttp.open("GET", url, true);// 异步处理返回   
-		xmlHttp.onreadystatechange = callback;
-		xmlHttp.setRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded;");
-		xmlHttp.send();
-	}
-	
 	function test(){
 		alert("test");
 	}
 </script>
 <body style="background: #e1e9eb;">
-	<form action="" id="mainForm" method="post">
-		<div class="right">
-			<div class="current">
-				当前位置：<a href="javascript:void(0)" style="color:#6E6E6E;">内容管理</a>
-				&gt; 内容列表
-			</div>
-			<div class="rightCont">
-				<p class="g_title fix">
-					内容列表 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="btn03" href="#">删 除</a>
-				</p>
-				<table class="tab1">
+
+	<div class="right">
+		<div class="current">
+			当前位置：<a href="/SimpleEmployeeSystem/index.jsp" style="color:#6E6E6E;">主页</a>
+			&gt;<a href="/SimpleEmployeeSystem/getEmployeeList" style="color:#6E6E6E;">EmployeeList
+		</div>
+		<div class="rightCont">
+			<p class="g_title fix">
+				刷新 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+					class="btn03" href="#">删 除</a>
+			</p>
+			<table class="tab1">
+				<tbody>
+					<form action="addEmployee" id="add" method="get">
+						工号： <input type="text" name="id" value="" /> 姓名： <input
+							type="text" name="name" value="" /> 年龄： <input type="text"
+							name="age" value="" /> 性别： <input type="text" name="sex"
+							value="" /> <input type="submit" class="tabSub" value="插入" />
+					</form>
+				</tbody>
+			</table>
+			<div class="zixun fix">
+				<table class="tab2" width="100%">
 					<tbody>
 						<tr>
-							<td width="90" align="right">工号：</td>
-							<td><input type="text" id="add_id" value="" /></td>
-							<td width="90" align="right">姓名：</td>
-							<td><input type="text" id="add_name" value="" /></td>
-							<td width="90" align="right">年龄：</td>
-							<td><input type="text" id="add_age" value="" /></td>
-							<td width="90" align="right">性别：</td>
-							<td><input type="text" id="add_sex" value="" /></td>
-							<td width="90" align="right"><input type="button"
-								onClick="addEmployee()" class="tabSub" value="插入" /></td>
+							<th><input type="checkbox" id="all" onclick="" /></th>
+							<th>工号(id)</th>
+							<th>姓名(name)</th>
+							<th>年龄(age)</th>
+							<th>性别(sex)</th>
+							<th>操作</th>
 						</tr>
+						<%
+							//List<Employee> list = employeeService.getAllEmployee();
+							List<Employee> list = (List<Employee>) session.getAttribute("list");
+						%>
+						<%
+							for (int i = 0; i < list.size(); i++) {
+								Employee emp = list.get(i);
+						%>
+						<tr
+							<%if (i % 2 == 1) {
+					out.print(" style=\"background-color:#ECF6EE;\"");
+				}%>>
+							<td><input type="checkbox" /></td>
+							<td><%=emp.getId()%></td>
+							<td><%=emp.getName()%></td>
+							<td><%=emp.getAge()%></td>
+							<td><%=emp.getSex()%></td>
+							<td><button onClick="openEditWindow(<%=emp.getId()%>)" class="tabSub">修改</button>&nbsp;&nbsp;&nbsp;
+								<button onClick="deleteEmployee(<%=emp.getId()%>)" class="tabSub">删除</button></td>
+						</tr>
+						<%
+							}
+						%>
+
 					</tbody>
+
 				</table>
-				<div class="zixun fix">
-					<table class="tab2" width="100%">
-						<tbody>
-							<tr>
-								<th><input type="checkbox" id="all" onclick="" /></th>
-								<th>工号(id)</th>
-								<th>姓名(name)</th>
-								<th>年龄(age)</th>
-								<th>性别(sex)</th>
-								<th>操作</th>
-							</tr>
-							<%
-								//List<Employee> list = employeeService.getAllEmployee();
-													List<Employee> list = (List<Employee>)session.getAttribute("list");
-							%>
-							<%
-								for (int i = 0; i < list.size(); i++) {
-														Employee emp = list.get(i);
-							%>
-							<tr
-								<%if(i%2==1){out.print(" style=\"background-color:#ECF6EE;\"");}%>>
-								<td><input type="checkbox" /></td>
-								<td><%=emp.getId()%></td>
-								<td><%=emp.getName()%></td>
-								<td><%=emp.getAge()%></td>
-								<td><%=emp.getSex()%></td>
-								<td><a
-									href="/SimpleEmployeeSystem/edit?id=<%=emp.getId()%>">修改</a>&nbsp;&nbsp;&nbsp;
-									<a href="#">删除</a></td>
-							</tr>
-							<%
-								}
-							%>
-							
-						</tbody>
-						
-					</table>
-					<div class='page fix'>
-						共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
-							href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
-							class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
-							type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
-							href='###' class='go'>GO</a>
-					</div>
+				<div class='page fix'>
+					共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
+						href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
+						class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
+						type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
+						href='###' class='go'>GO</a>
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
+
 </body>
 </html>

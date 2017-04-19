@@ -51,8 +51,13 @@ sex VARCHAR(1),
 PRIMARY KEY(id)
 );
 
+select * from employee;
+
 insert into employee values (1, 'Tom', 25, 'M');
 insert into employee values (2, 'Alice', 18, 'F');
+
+delete from employee where id=3;
+
 ```
 
 2.attend员工考勤情况表：出勤时间、出勤类型、employee<br />

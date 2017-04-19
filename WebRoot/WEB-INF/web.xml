@@ -48,14 +48,4 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 	
-	<!-- 具体页面 -->
-	<!-- http://localhost:8080/SimpleEmployeeSystem/EmployeeList -->
-	<servlet>
-		<servlet-name>EmployeeList</servlet-name>
-		<servlet-class>servlet.EmployeeList</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>EmployeeList</servlet-name>
-		<url-pattern>/EmployeeList</url-pattern>
-	</servlet-mapping>
 </web-app>

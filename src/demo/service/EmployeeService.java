@@ -33,6 +33,10 @@ public class EmployeeService {
 	public int addEmployee(Employee employee){
 		return this.employeeDAO.addEmployee(employee);
 	}
+	
+	public int deleteEmployee(int id){
+		return this.employeeDAO.deleteEmployee(id);
+	}
 
 	public static void main(String[] args) {
 		EmployeeService es = new EmployeeService();
