@@ -72,7 +72,7 @@ public class SalaryDAO {
 	 * @param id 记录id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
-	public List<Salary> queryAttendByEmpId (int empid){
+	public List<Salary> querySalaryByEmpId (int empid){
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {

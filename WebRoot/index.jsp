@@ -27,8 +27,8 @@
 		<a href="getEmployeeList" class="btn">EmployeeList</a>
 		<a href="getAttendList" class="btn">AttendList</a>
 		<a href="getBenefitList" class="btn">BenefitList</a>
-		<a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>
-		<a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a>
+		<a href="getJobList" class="btn">JobList</a>
+		<a href="getSalaryList" class="btn">SalaryList</a>
 	</section>
 
 	<section class="main-content">
