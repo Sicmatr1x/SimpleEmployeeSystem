@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author sicmatr1x
  * 
  */
+@SuppressWarnings("serial")
 public class Job implements Serializable {
 	private int id;
 	private int empid;

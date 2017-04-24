@@ -10,7 +10,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<title>Cayman theme</title>
+<title>SimpleEmployeeSystem</title>
 <meta name="description"
 	content="Cayman is a clean, responsive theme for GitHub Pages.">
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -47,7 +47,7 @@
 	<div class="right">
 		<div class="current">
 			当前位置：<a href="/SimpleEmployeeSystem/index.jsp" style="color:#6E6E6E;">主页</a>
-			&gt;<a href="/SimpleEmployeeSystem/getAttendList" style="color:#6E6E6E;">AttendList
+			&gt;<a href="/SimpleEmployeeSystem/getAttendList" style="color:#6E6E6E;">AttendList</a>
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">

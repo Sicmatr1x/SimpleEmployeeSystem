@@ -2,6 +2,7 @@ package demo.beans;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Employee implements Serializable{
 	
 	private int id;

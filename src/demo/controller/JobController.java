@@ -1,15 +1,9 @@
 package demo.controller;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.GET;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import demo.beans.Job;
 import demo.service.JobService;
-import demo.service.DateFactory;
 
 @Controller
 public class JobController {

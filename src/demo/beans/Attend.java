@@ -9,6 +9,7 @@ import java.util.Date;
  * @author sicmatr1x
  * 
  */
+@SuppressWarnings("serial")
 public class Attend implements Serializable{
 	private int id;
 	private int empid;
