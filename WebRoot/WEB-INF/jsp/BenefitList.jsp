@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-<title>内容列表页面</title>
+<title>BenefitList</title>
 <link href="<%=basePath%>resources/css/all.css" rel="stylesheet"
 	type="text/css" />
 </head>

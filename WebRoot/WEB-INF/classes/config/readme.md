@@ -150,6 +150,9 @@ where employee.id = job.empid;
 5.salary员工月工资表。<br />
 
 ```sql
+--empid 工号
+--mounth 月份 2017-04-01
+--salary 月工资=基本月工资+该月津贴
 CREATE TABLE salary(
 id int,
 empid int,
