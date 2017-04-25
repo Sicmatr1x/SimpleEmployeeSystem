@@ -198,7 +198,7 @@ public class BenefitDAO {
  		List<Benefit> list = BenefitDAO.queryAllBenefit();
  		System.out.println("\n打印全表：");
  		for(Benefit e : list){
- 			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getMounth() + ";" + e.getOvertime());
+ 			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getMounth() + ";" + e.getBene());
  		}
  		System.out.println("打印完毕");
  		

@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import demo.beans.Attend;
-
 import demo.db.DBAccess;
 
 public class AttendDAO {
@@ -199,7 +198,7 @@ public class AttendDAO {
  		List<Attend> list = AttendDAO.queryAllAttend();
  		System.out.println("\n打印全表：");
  		for(Attend e : list){
- 			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getAttendDate() + ";" + e.getAttendType());
+ 			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getAttendDate() + ";" + e.getOvertime() + ";" + e.getDayoff());
  		}
  		System.out.println("打印完毕");
  		

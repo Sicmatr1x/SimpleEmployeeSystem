@@ -23,11 +23,12 @@
 <script type="text/javascript">
     
     function openEditWindow(id,empid){
-    	var attendDate=prompt("出勤日期","2017-04-15");
-    	var attendType=prompt("出勤类型","0正常上班，1加班,2请假");
-    	if(attendDate != null && attendDate != "" && attendType != null && attendType != ""){
+    	var attendDate=prompt("出勤日期","2017-01-01");
+    	var overtime=prompt("加班天数","");
+    	var dayoff=prompt("请假天数","");
+    	if(attendDate != null && attendDate != "" && overtime != null && overtime != "" && dayoff != null && dayoff != ""){
     		
-    		window.location.href='editAttend?id=' + id + '&empid=' + empid+ '&attendDate=' + attendDate + '&attendType=' + attendType;
+    		window.location.href='editAttend?id=' + id + '&empid=' + empid + '&attendDate=' + attendDate + '&overtime=' + overtime + '&dayoff=' + dayoff;
     	}else{
     		alert("属性不能为空！");
     	}
@@ -59,8 +60,9 @@
 					<form action="addAttend" id="add" method="get">
 						编号：<input type="text" name="id" value="" />
 						 工号：<input type="text" name="empid" value="" />
-						 出勤日期：<input type="text" name="attendDate" value="2017-04-15" />
-						出勤类型：<input type="text" name="attendType" value="0正常上班，1加班,2请假" />
+						 出勤日期：<input type="text" name="attendDate" value="2017-01-01" />
+						加班天数：<input type="text" name="overtime" value="" />
+						请假天数：<input type="text" name="dayoff" value="" />
 							 <input type="submit" class="tabSub" value="插入" />
 					</form>
 				</tbody>
@@ -73,7 +75,8 @@
 							<th>编号(id)</th>
 							<th>工号(empid)</th>
 							<th>出勤日期(attendDate)</th>
-							<th>出勤类型(attendType)</th>
+							<th>加班天数(overtime)</th>
+							<th>请假天数(dayoff)</th>
 							<th>操作</th>
 						</tr>
 						<%
@@ -91,7 +94,8 @@
 							<td><%=t.getId()%></td>
 							<td><%=t.getEmpid()%></td>
 							<td><%=DateFactory.getDateToString(t.getAttendDate())%></td>
-							<td><%=t.getAttendType()%></td>
+							<td><%=t.getOvertime()%></td>
+							<td><%=t.getDayoff()%></td>
 							<td><button onClick="openEditWindow(<%=t.getId()%>,<%=t.getEmpid()%>)" class="tabSub">修改</button>&nbsp;&nbsp;&nbsp;
 								<button onClick="deleteAttend(<%=t.getId()%>)" class="tabSub">删除</button></td>
 						</tr>

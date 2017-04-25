@@ -26,7 +26,7 @@
 >
 
 按照不同工种(job)的基本工资(baseSalary)情况、员工的考勤情况(attend)产生员工的每月的月工资；<br />
->月底自动生成，从表attend里读取attendDate和attendType来计算该月加班天数,从表job里读取jobType和jobLeve并计算月工资保存到表salary中<br />
+>手动触发自动生成，从表attend里读取attendDate和attendType来计算该月正常上班天数,从表job里读取baseSalary并计算月工资保存到表salary中<br />
 >
 
 员工年终奖金的生成，员工的年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12；<br />
@@ -34,6 +34,21 @@
 
 能够查询单个员工的工资情况、每个部门的工资情况、按月的工资统计；<br />
 >
+
+```sql
+#定义触发器
+drop trigger if exists amerce_update;
+
+delimiter $
+create trigger employee_attend after insert on attend
+for each row
+begin
+if(new.attendType == 1)
+set ;
+end;
+$
+
+```
 
 ### 2、数据库要求：在数据库中至少应该包含下列数据表：<br />
 1.employee员工基本信息表；<br />

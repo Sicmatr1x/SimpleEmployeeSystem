@@ -73,7 +73,7 @@ public class AttendService {
 		List<Attend> list = es.getAllAttend();
 		System.out.println("\n打印全表：");
 		for (Attend e : list) {
-			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getAttendDate() + ";" + e.getAttendType());
+			System.out.println(e.getId() + ";" + e.getEmpid() + ";" + e.getAttendDate() + ";" + e.getOvertime() + ";" + e.getDayoff());
 		}
 		System.out.println("打印完毕");
 	}

@@ -14,7 +14,7 @@ public class Benefit implements Serializable {
 	private int id;
 	private int empid;
 	private Date mounth;
-	private int overtime;
+	private int bene;
 
 	public int getId() {
 		return id;
@@ -40,11 +40,13 @@ public class Benefit implements Serializable {
 		this.mounth = mounth;
 	}
 
-	public int getOvertime() {
-		return overtime;
+	public int getBene() {
+		return bene;
 	}
 
-	public void setOvertime(int overtime) {
-		this.overtime = overtime;
+	public void setBene(int bene) {
+		this.bene = bene;
 	}
+
+	
 }

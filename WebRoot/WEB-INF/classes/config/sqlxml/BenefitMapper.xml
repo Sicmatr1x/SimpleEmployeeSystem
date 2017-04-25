@@ -7,27 +7,27 @@
 	 
 	<!-- 显示全部 -->
 	<select id="queryAllBenefit" resultType="demo.beans.Benefit">  
-       select id, empid, mounth, overtime from Benefit;
+       select id, empid, mounth, bene from Benefit;
     </select>
     
     <!-- 根据主键查询 -->
     <select id="queryBenefitById" parameterType="int" resultType="demo.beans.Benefit">  
-       select id, empid, mounth, overtime from Benefit where id=#{id};
+       select id, empid, mounth, bene from Benefit where id=#{id};
     </select>
     
     <!-- 根据empid查询 -->
     <select id="queryBenefitByEmpId" parameterType="int" resultType="demo.beans.Benefit">  
-       select id, empid, mounth, overtime from Benefit where empid=#{empid};
+       select id, empid, mounth, bene from Benefit where empid=#{empid};
     </select>  
     
     <!-- 添加 -->
     <insert id="addBenefit" parameterType="demo.beans.Benefit">
-    	insert into Benefit(id, empid, mounth, overtime) values (#{id},#{empid},#{mounth},#{overtime})
+    	insert into Benefit(id, empid, mounth, bene) values (#{id},#{empid},#{mounth},#{bene})
     </insert>
     
     <!-- 根据主键修改 -->
     <update id="editBenefit" parameterType="demo.beans.Benefit">
-    	update Benefit set mounth=#{mounth},overtime=#{overtime} where id=#{id}
+    	update Benefit set mounth=#{mounth},bene=#{bene} where id=#{id}
     </update>
     
     <!-- 根据主键删除 -->

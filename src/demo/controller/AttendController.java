@@ -22,7 +22,7 @@ public class AttendController {
 	private AttendService attendService;
 
 	/**
-	 * http://localhost:8080/SimpleAttendSystem/getAttendList
+	 * http://localhost:8080/SimpleEmployeeSystem/getAttendList
 	 * 
 	 * @param request
 	 * @return
@@ -51,7 +51,8 @@ public class AttendController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		attend.setAttendType(Integer.valueOf(request.getParameter("attendType")));
+		attend.setOvertime(Integer.valueOf(request.getParameter("overtime")));
+		attend.setDayoff(Integer.valueOf(request.getParameter("dayoff")));
 		this.attendService.addAttend(attend);
 		return new ModelAndView("redirect:/getAttendList");
 	}
@@ -72,7 +73,8 @@ public class AttendController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		attend.setAttendType(Integer.valueOf(request.getParameter("attendType")));
+		attend.setOvertime(Integer.valueOf(request.getParameter("overtime")));
+		attend.setDayoff(Integer.valueOf(request.getParameter("dayoff")));
 		this.attendService.editAttend(attend);
 		return new ModelAndView("redirect:/getAttendList");
 	}

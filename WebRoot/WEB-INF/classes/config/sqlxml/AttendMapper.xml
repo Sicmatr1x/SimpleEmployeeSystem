@@ -7,27 +7,27 @@
 	 
 	<!-- 显示全部 -->
 	<select id="queryAllAttend" resultType="demo.beans.Attend">  
-       select id,empid,attendDate,attendType from Attend;
+       select id,empid,attendDate,overtime,dayoff from Attend;
     </select>
     
     <!-- 根据主键查询 -->
     <select id="queryAttendById" parameterType="int" resultType="demo.beans.Attend">  
-       select id,empid,attendDate,attendType from Attend where id=#{id};
+       select id,empid,attendDate,overtime,dayoff from Attend where id=#{id};
     </select>
     
     <!-- 根据empid查询 -->
     <select id="queryAttendByEmpId" parameterType="int" resultType="demo.beans.Attend">  
-       select id,empid,attendDate,attendType from Attend where empid=#{empid};
+       select id,empid,attendDate,overtime,dayoff from Attend where empid=#{empid};
     </select>  
     
     <!-- 添加 -->
     <insert id="addAttend" parameterType="demo.beans.Attend">
-    	insert into Attend(id,empid,attendDate,attendType) values (#{id},#{empid},#{attendDate},#{attendType})
+    	insert into Attend(id,empid,attendDate,overtime,dayoff) values (#{id},#{empid},#{attendDate},#{overtime},#{dayoff})
     </insert>
     
     <!-- 根据主键修改 -->
     <update id="editAttend" parameterType="demo.beans.Attend">
-    	update Attend set attendDate=#{attendDate},attendType=#{attendType} where id=#{id}
+    	update Attend set attendDate=#{attendDate},overtime=#{overtime},dayoff=#{dayoff} where id=#{id}
     </update>
     
     <!-- 根据主键删除 -->

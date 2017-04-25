@@ -51,7 +51,7 @@ public class BenefitController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		benefit.setOvertime(Integer.valueOf(request.getParameter("overtime")));
+		benefit.setBene(Integer.valueOf(request.getParameter("bene")));
 		this.benefitService.addBenefit(benefit);
 		return new ModelAndView("redirect:/getBenefitList");
 	}
@@ -72,7 +72,7 @@ public class BenefitController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		benefit.setOvertime(Integer.valueOf(request.getParameter("overtime")));
+		benefit.setBene(Integer.valueOf(request.getParameter("bene")));
 		this.benefitService.editBenefit(benefit);
 		return new ModelAndView("redirect:/getBenefitList");
 	}

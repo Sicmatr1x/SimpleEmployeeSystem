@@ -23,11 +23,11 @@
 <script type="text/javascript">
     
     function openEditWindow(id,empid){
-    	var mounth=prompt("该月加班记录","2017-04-01");
-    	var overtime=prompt("月加班天数","单位：天");
-    	if(mounth != null && mounth != "" && overtime != null && overtime != ""){
+    	var mounth=prompt("该月加班记录","2017-01-01");
+    	var bene=prompt("该月津贴","");
+    	if(mounth != null && mounth != "" && bene != null && bene != ""){
     		
-    		window.location.href='editBenefit?id=' + id + '&empid=' + empid+ '&mounth=' + mounth + '&overtime=' + overtime;
+    		window.location.href='editBenefit?id=' + id + '&empid=' + empid+ '&mounth=' + mounth + '&bene=' + bene;
     	}else{
     		alert("属性不能为空！");
     	}
@@ -59,8 +59,8 @@
 					<form action="addBenefit" id="add" method="get">
 						编号：<input type="text" name="id" value="" />
 						 工号：<input type="text" name="empid" value="" />
-						该月加班记录：<input type="text" name="mounth" value="2017-04-01" />
-						月加班天数：<input type="text" name="overtime" value="单位：天" />
+						该月加班记录：<input type="text" name="mounth" value="2017-01-01" />
+						该月津贴：<input type="text" name="bene" value="" />
 							 <input type="submit" class="tabSub" value="插入" />
 					</form>
 				</tbody>
@@ -73,7 +73,7 @@
 							<th>编号(id)</th>
 							<th>工号(empid)</th>
 							<th>该月加班记录(mounth)</th>
-							<th>月加班天数(overtime)</th>
+							<th>该月津贴(bene)</th>
 							<th>操作</th>
 						</tr>
 						<%
@@ -91,7 +91,7 @@
 							<td><%=t.getId()%></td>
 							<td><%=t.getEmpid()%></td>
 							<td><%=DateFactory.getDateToString(t.getMounth())%></td>
-							<td><%=t.getOvertime()%></td>
+							<td><%=t.getBene()%></td>
 							<td><button onClick="openEditWindow(<%=t.getId()%>,<%=t.getEmpid()%>)" class="tabSub">修改</button>&nbsp;&nbsp;&nbsp;
 								<button onClick="deleteBenefit(<%=t.getId()%>)" class="tabSub">删除</button></td>
 						</tr>

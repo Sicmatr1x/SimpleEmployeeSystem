@@ -14,7 +14,8 @@ public class Attend implements Serializable{
 	private int id;
 	private int empid;
 	private Date attendDate;
-	private int attendType;
+	private int overtime;
+	private int dayoff;
 
 	public int getId() {
 		return id;
@@ -40,11 +41,21 @@ public class Attend implements Serializable{
 		this.attendDate = attendDate;
 	}
 
-	public int getAttendType() {
-		return attendType;
+	public int getOvertime() {
+		return overtime;
 	}
 
-	public void setAttendType(int attendType) {
-		this.attendType = attendType;
+	public void setOvertime(int overtime) {
+		this.overtime = overtime;
 	}
+
+	public int getDayoff() {
+		return dayoff;
+	}
+
+	public void setDayoff(int dayoff) {
+		this.dayoff = dayoff;
+	}
+
+
 }
