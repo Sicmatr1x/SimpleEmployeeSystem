@@ -85,6 +85,29 @@ public class JobDAO {
 	}
 	
 	/**
+	 * 根据部门department来查询指定记录
+	 * @param department 记录department
+	 * @return 查得到返回Attend，查不到返回null
+	 */
+	public List<Job> queryJobByDepartment (String department){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			// 执行查询
+			return sqlSession.selectList("JobMapper.queryJobByDepartment", department);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(sqlSession != null){
+				sqlSession.close();
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * 插入员工
 	 * @param Job
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败

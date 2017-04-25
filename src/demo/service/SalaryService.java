@@ -1,10 +1,13 @@
 package demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import demo.beans.Job;
 import demo.beans.Salary;
+import demo.dao.JobDAO;
 import demo.dao.SalaryDAO;
 
 
@@ -12,6 +15,9 @@ public class SalaryService {
 
 	@Resource(name = "salaryDAO")
 	private SalaryDAO salaryDAO;
+	
+	@Resource(name = "jobDAO")
+	private JobDAO jobDAO;
 	
 	/**
 	 * 返回整张Salary表的内容
@@ -37,6 +43,25 @@ public class SalaryService {
 	 */
 	public List<Salary> getSalaryByEmpId(int empid){
 		return this.salaryDAO.querySalaryByEmpId(empid);
+	}
+	
+	/**
+	 * 根据部门来查询指定记录
+	 * @param empid
+	 * @return
+	 */
+	public List<Salary> getSalaryByDepartment(String department){
+		List<Salary> salaryList = new ArrayList<>();
+		
+		// 获取属于department的员工集合
+		List<Job> jobList = this.jobDAO.queryJobByDepartment(department);
+		System.out.println("jobList.size()=" + jobList.size());
+		for(Job tJob : jobList){
+			// 获取单个员工的记录
+			List<Salary> tList = this.getSalaryByEmpId(tJob.getEmpid());
+			salaryList.addAll(salaryList.size(), tList);
+		}
+		return salaryList;
 	}
 	
 	/**

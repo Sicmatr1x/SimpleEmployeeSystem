@@ -46,15 +46,6 @@
     		alert("属性不能为空！");
     	}
     }
-    
-    function queryDepartmentSalary(){
-    	var department=prompt("部门","");
-    	if(department != null && department != ""){
-    		window.location.href='queryDepartmentSalary?department=' + department;
-    	}else{
-    		alert("属性不能为空！");
-    	}
-    }
 
 	function test(){
 		alert("test");
@@ -69,8 +60,8 @@
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">
-				刷新 <a class="btn03" onclick="queryEmployeeSalary()">查询员工工资</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-					class="btn03" onclick="queryDepartmentSalary()">查询部门工资</a>
+				<%= session.getAttribute("department") %> <a class="" ></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+					class=""></a>
 			</p>
 			<table class="tab1">
 				<tbody>

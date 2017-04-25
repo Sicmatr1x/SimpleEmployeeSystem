@@ -20,6 +20,11 @@
        select id, empid, jobType, jobLevel, baseSalary, department from Job where empid=#{empid};
     </select>  
     
+     <!-- 根据department查询 -->
+    <select id="queryJobByDepartment" parameterType="String" resultType="demo.beans.Job">  
+       select id, empid, jobType, jobLevel, baseSalary, department from Job where department=#{department};
+    </select>  
+    
     <!-- 添加 -->
     <insert id="addJob" parameterType="demo.beans.Job">
     	insert into Job(id, empid, jobType, jobLevel, baseSalary, department) 

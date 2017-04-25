@@ -22,11 +22,11 @@
 >使用表job,手动录入工种(job)和基本工资(baseSalary)<br />
 
 加班津贴(benefit)管理，根据加班时间(overtime)和类型给予不同的加班津贴；<br />
->月底自动生成，从表attend里读取attendDate和attendType来计算该月加班天数并计算加班津贴保存到表salary中<br />
+><br />
 >
 
 按照不同工种(job)的基本工资(baseSalary)情况、员工的考勤情况(attend)产生员工的每月的月工资；<br />
->手动触发自动生成，从表attend里读取attendDate和attendType来计算该月正常上班天数,从表job里读取baseSalary并计算月工资保存到表salary中<br />
+><br />
 >
 
 员工年终奖金的生成，员工的年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12；<br />
@@ -43,7 +43,9 @@ delimiter $
 create trigger employee_attend after insert on attend
 for each row
 begin
-if(new.attendType == 1)
+if(new.attendType == 1){
+    update benefit set overtime=overtime+200 where empid=new.empid and new.attendDate 
+}
 set ;
 end;
 $
@@ -91,12 +93,14 @@ delete from employee where id=3;
 ```sql
 --empid 工号
 --attendDate 出勤日期
---attendType 出勤类型(0正常上班，1加班,2请假)
+--overtime 加班天数
+--dayoff 请假天数
 CREATE TABLE attend(
 id int,
 empid int,
 attendDate DATE,
-attendType int,
+overtime int,
+dayoff int,
 PRIMARY KEY(id),
 key empid (empid),
 foreign key (empid) references employee(id)
@@ -104,15 +108,9 @@ foreign key (empid) references employee(id)
 
 select * from attend;
 
-insert into attend values (1, 1, "2017-04-15", 0);
+DROP TABLE attend;
 
-update attend
-set attendDate = "2017-04-15"
-where id = 1;
-
-select employee.id as eid, name, age, sex, attend.id as aid, attendDate, attendType
-from employee, attend
-where employee.id = attend.empid;
+insert into attend values (1, 1, "2017-04-15", 5,3);
 ```
 
 3.benefit员工津贴信息表，反映员工的加班时间，加班类别、加班天数、津贴情况等：出勤时间、出勤类型、employee<br />
@@ -120,12 +118,12 @@ where employee.id = attend.empid;
 ```sql
 --empid 工号
 --mounth 该月加班记录
---overtime 月加班天数(单位：天)
+--bene 初始为0 该月津贴 每次+200
 CREATE TABLE benefit(
 id int,
 empid int,
 mounth DATE,
-overtime int,
+bene int,
 PRIMARY KEY(id),
 key empid (empid),
 foreign key (empid) references employee(id)
@@ -133,11 +131,9 @@ foreign key (empid) references employee(id)
 
 select * from benefit;
 
-insert into benefit values (1, 1, "2017-04-01", 1);
+DROP TABLE benefit;
 
-select employee.id as eid, name, age, sex, benefit.id as bid, mounth, overtime
-from employee, benefit
-where employee.id = benefit.empid;
+insert into benefit values (1, 1, "2017-04-01", 500);
 ```
 
 4.job员工工种情况表，反映员工的工种、等级，基本工资等信息；

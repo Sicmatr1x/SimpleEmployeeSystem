@@ -48,6 +48,22 @@ public class SalaryController {
 		request.getSession().setAttribute("list", list);
 		return "QueryEmployeeSalary";
 	}
+	
+	/**
+	 * http://localhost:8080/SimpleEmployeeSystem/queryDepartmentSalary?department=
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/queryDepartmentSalary")
+	public String queryDepartmentSalary(HttpServletRequest request) {
+		String department = request.getParameter("department");
+		System.out.println("queryDepartmentSalary:" + department);
+		List<Salary> list = salaryService.getSalaryByDepartment(department);
+		request.getSession().setAttribute("list", list);
+		request.getSession().setAttribute("department", department);
+		return "QueryDepartmentSalary";
+	}
 
 	/**
 	 * http://localhost:8080/SimpleSalarySystem/addSalary
