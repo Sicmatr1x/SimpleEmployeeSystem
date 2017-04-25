@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-<title>SalaryList</title>
+<title>QueryEmployeeSalary</title>
 <link href="<%=basePath%>resources/css/all.css" rel="stylesheet"
 	type="text/css" />
 </head>
@@ -37,15 +37,6 @@
     function deleteSalary(id){
     	window.location.href='deleteSalary?id=' + id;
     }
-    
-    function queryEmployeeSalary(){
-    	var empid=prompt("工号","");
-    	if(empid != null && empid != ""){
-    		window.location.href='queryEmployeeSalary?empid=' + empid;
-    	}else{
-    		alert("属性不能为空！");
-    	}
-    }
 
 	function test(){
 		alert("test");
@@ -60,7 +51,7 @@
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">
-				刷新 <a class="btn03" onclick="queryEmployeeSalary()">查询员工工资</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+				返回 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
 					class="btn03" href="#">删 除</a>
 			</p>
 			<table class="tab1">

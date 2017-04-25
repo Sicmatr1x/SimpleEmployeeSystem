@@ -33,6 +33,21 @@ public class SalaryController {
 		request.getSession().setAttribute("list", list);
 		return "SalaryList";
 	}
+	
+	/**
+	 * http://localhost:8080/SimpleEmployeeSystem/queryEmployeeSalary?empid=
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/queryEmployeeSalary")
+	public String queryEmployeeSalary(HttpServletRequest request) {
+		int empid = Integer.valueOf(request.getParameter("empid"));
+		System.out.println("queryEmployeeSalary:" + empid);
+		List<Salary> list = salaryService.getSalaryByEmpId(empid);
+		request.getSession().setAttribute("list", list);
+		return "QueryEmployeeSalary";
+	}
 
 	/**
 	 * http://localhost:8080/SimpleSalarySystem/addSalary
