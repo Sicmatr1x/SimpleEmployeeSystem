@@ -1,6 +1,7 @@
 package demo.controller;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -47,6 +48,26 @@ public class SalaryController {
 		List<Salary> list = salaryService.getSalaryByEmpId(empid);
 		request.getSession().setAttribute("list", list);
 		return "QueryEmployeeSalary";
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/querySalaryByDate")
+	public String querySalaryByDate(HttpServletRequest request) {
+		Date mounth;
+		try {
+			mounth = DateFactory.getDate(request.getParameter("mounth"));
+			System.out.println("queryEmployeeSalary:" + mounth);
+			List<Salary> list = salaryService.getSalaryByDate(mounth);
+			request.getSession().setAttribute("list", list);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "QuerySalaryByDate";
 	}
 	
 	/**

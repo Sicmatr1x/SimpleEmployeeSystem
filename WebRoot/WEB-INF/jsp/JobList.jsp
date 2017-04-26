@@ -55,8 +55,8 @@
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">
-				刷新 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-					class="btn03" href="#">删 除</a>
+				刷新 <a class="" href="#"></a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+					class="" href="#"></a>
 			</p>
 			<table class="tab1">
 				<tbody>

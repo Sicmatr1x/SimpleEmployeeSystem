@@ -1,6 +1,7 @@
 package demo.dao;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -73,6 +74,29 @@ public class SalaryDAO {
 			sqlSession = dbAccess.getSqlSession();
 			// 执行查询
 			return sqlSession.selectList("SalaryMapper.querySalaryByEmpId", empid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(sqlSession != null){
+				sqlSession.close();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据mounth来查询指定记录
+	 * @param date
+	 * @return
+	 */
+	public List<Salary> querySalaryByDate (Date date){
+		DBAccess dbAccess = new DBAccess();
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			// 执行查询
+			return sqlSession.selectList("SalaryMapper.querySalaryByDate", date);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

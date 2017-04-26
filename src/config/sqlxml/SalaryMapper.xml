@@ -20,6 +20,11 @@
        select id, empid, mounth, salary from Salary where empid=#{empid};
     </select>  
     
+    <!-- 根据mounth查询 -->
+    <select id="querySalaryByDate" parameterType="Date" resultType="demo.beans.Salary">  
+       select id, empid, mounth, salary from Salary where mounth=#{mounth};
+    </select>  
+    
     <!-- 添加 -->
     <insert id="addSalary" parameterType="demo.beans.Salary">
     	insert into Salary(id, empid, mounth, salary) values (#{id},#{empid},#{mounth},#{salary})

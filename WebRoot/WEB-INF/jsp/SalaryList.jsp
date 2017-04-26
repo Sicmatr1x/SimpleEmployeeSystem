@@ -47,6 +47,15 @@
     	}
     }
     
+    function querySalaryByDate(){
+    	var mounth=prompt("月份","");
+    	if(mounth != null && mounth != ""){
+    		window.location.href='querySalaryByDate?mounth=' + mounth;
+    	}else{
+    		alert("属性不能为空！");
+    	}
+    }
+    
     function queryDepartmentSalary(){
     	var department=prompt("部门","");
     	if(department != null && department != ""){
@@ -65,12 +74,14 @@
 	<div class="right">
 		<div class="current">
 			当前位置：<a href="/SimpleEmployeeSystem/index.jsp" style="color:#6E6E6E;">主页</a>
-			&gt;<a href="/SimpleEmployeeSystem/getSalaryList" style="color:#6E6E6E;">SalaryList
+			&gt;<a href="/SimpleEmployeeSystem/getSalaryList" style="color:#6E6E6E;">SalaryList</a>
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">
-				刷新 <a class="btn03" onclick="queryEmployeeSalary()">查询员工工资</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-					class="btn03" onclick="queryDepartmentSalary()">查询部门工资</a>
+				刷新
+				<a class="btn03" onclick="querySalaryByDate()">按月工资统计</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn03" onclick="queryEmployeeSalary()">查询员工工资</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn03" onclick="queryDepartmentSalary()">查询部门工资</a>
 			</p>
 			<table class="tab1">
 				<tbody>

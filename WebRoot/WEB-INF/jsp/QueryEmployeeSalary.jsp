@@ -46,25 +46,16 @@
 
 	<div class="right">
 		<div class="current">
-			当前位置：<a href="/SimpleEmployeeSystem/index.jsp" style="color:#6E6E6E;">主页</a>
-			&gt;<a href="/SimpleEmployeeSystem/getSalaryList" style="color:#6E6E6E;">SalaryList
+			当前位置：<a href="/SimpleEmployeeSystem/index.jsp" style="color:#6E6E6E;">主页</a>&gt;
+			<a href="/SimpleEmployeeSystem/getSalaryList" style="color:#6E6E6E;">SalaryList</a>&gt;
+			<a href="" style="color:#6E6E6E;">QueryEmployeeSalary</a>
 		</div>
 		<div class="rightCont">
 			<p class="g_title fix">
-				返回 <a class="btn03" href="#">新 增</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-					class="btn03" href="#">删 除</a>
+				刷新 <a class="" ></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				 <a class=""></a>
 			</p>
-			<table class="tab1">
-				<tbody>
-					<form action="addSalary" id="add" method="get">
-						编号：<input type="text" name="id" value="" />
-						 工号：<input type="text" name="empid" value="" />
-						 月份：<input type="text" name="mounth" value="2017-04-01" />
-						月工资：<input type="text" name="salary" value="" />
-							 <input type="submit" class="tabSub" value="插入" />
-					</form>
-				</tbody>
-			</table>
+			
 			<div class="zixun fix">
 				<table class="tab2" width="100%">
 					<tbody>

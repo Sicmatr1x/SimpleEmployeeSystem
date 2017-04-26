@@ -122,7 +122,7 @@ insert into attend values (1, 1, "2017-04-15", 5,3);
 CREATE TABLE benefit(
 id int,
 empid int,
-mounth DATE,
+mounth DATE, 
 bene int,
 PRIMARY KEY(id),
 key empid (empid),

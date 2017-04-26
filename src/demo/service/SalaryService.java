@@ -1,6 +1,7 @@
 package demo.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -43,6 +44,15 @@ public class SalaryService {
 	 */
 	public List<Salary> getSalaryByEmpId(int empid){
 		return this.salaryDAO.querySalaryByEmpId(empid);
+	}
+	
+	/**
+	 * 根据mounth来查询指定记录
+	 * @param date
+	 * @return
+	 */
+	public List<Salary> getSalaryByDate(Date date){
+		return this.salaryDAO.querySalaryByDate(date);
 	}
 	
 	/**
