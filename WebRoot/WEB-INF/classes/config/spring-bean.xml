@@ -19,4 +19,7 @@
 	
 	<bean id="salaryService" class="demo.service.SalaryService"></bean>
 	<bean id="salaryDAO" class="demo.dao.SalaryDAO"></bean>
+	
+	<bean id="awardService" class="demo.service.AwardService"></bean>
+	<bean id="awardDAO" class="demo.dao.AwardDAO"></bean>
 </beans>

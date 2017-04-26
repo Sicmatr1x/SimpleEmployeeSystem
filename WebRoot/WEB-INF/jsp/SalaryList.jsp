@@ -48,7 +48,7 @@
     }
     
     function querySalaryByDate(){
-    	var mounth=prompt("月份","");
+    	var mounth=prompt("月份","2017-01-01");
     	if(mounth != null && mounth != ""){
     		window.location.href='querySalaryByDate?mounth=' + mounth;
     	}else{
@@ -60,6 +60,15 @@
     	var department=prompt("部门","");
     	if(department != null && department != ""){
     		window.location.href='queryDepartmentSalary?department=' + department;
+    	}else{
+    		alert("属性不能为空！");
+    	}
+    }
+    
+    function getAwardList(){
+    	var year=prompt("年份","2017-01-01");
+    	if(year != null && year != ""){
+    		window.location.href='getAwardList?year=' + year;
     	}else{
     		alert("属性不能为空！");
     	}
@@ -81,7 +90,8 @@
 				刷新
 				<a class="btn03" onclick="querySalaryByDate()">按月工资统计</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="btn03" onclick="queryEmployeeSalary()">查询员工工资</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="btn03" onclick="queryDepartmentSalary()">查询部门工资</a>
+				<a class="btn03" onclick="queryDepartmentSalary()">查询部门工资</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn03" onclick="getAwardList()">统计全年收入</a>
 			</p>
 			<table class="tab1">
 				<tbody>

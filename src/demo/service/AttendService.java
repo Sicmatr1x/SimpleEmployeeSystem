@@ -171,9 +171,9 @@ public class AttendService {
 			String[] tStrings = valueString.split(",");
 			// 生成attend对象
 			Attend attend = new Attend();
-			for(int j = 0; j < tStrings.length; j++){
-				System.out.println("tStrings[" + j + "]=" + tStrings[j]);
-			}
+//			for(int j = 0; j < tStrings.length; j++){
+//				System.out.println("tStrings[" + j + "]=" + tStrings[j]);
+//			}
 			// 写入数据
 			attend.setId(Integer.valueOf(tStrings[0]));
 			attend.setEmpid(Integer.valueOf(tStrings[1]));
