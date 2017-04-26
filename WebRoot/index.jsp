@@ -29,6 +29,7 @@
 		<a href="getBenefitList" class="btn">BenefitList</a>
 		<a href="getJobList" class="btn">JobList</a>
 		<a href="getSalaryList" class="btn">SalaryList</a>
+		<a href="addAttendBySQL" class="btn">addAttendBySQL</a>
 	</section>
 
 	<section class="main-content">

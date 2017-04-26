@@ -1,5 +1,7 @@
 package demo.service;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -149,6 +151,39 @@ public class AttendService {
 	 */
 	public int deleteAttend(int id){
 		return this.attendDAO.deleteAttend(id);
+	}
+	
+	/**
+	 * 使用SQL语句批量添加attend记录
+	 * @param sql
+	 * @return
+	 * @throws ParseException
+	 */
+	public List<Integer> addAttendBySQL(String sql) throws ParseException{
+		List<Integer> resultList = new ArrayList<>();
+		String[] workStrings = sql.split(";");
+		for(int i = 0; i < workStrings.length; i++){
+			int beg = workStrings[i].indexOf("(");
+			int end = workStrings[i].indexOf(")", beg);
+			String valueString = workStrings[i].substring(beg + ")".length(), end);
+			valueString = valueString.replace(" ", "");
+			valueString = valueString.replace("\"", "");
+			String[] tStrings = valueString.split(",");
+			// 生成attend对象
+			Attend attend = new Attend();
+			for(int j = 0; j < tStrings.length; j++){
+				System.out.println("tStrings[" + j + "]=" + tStrings[j]);
+			}
+			// 写入数据
+			attend.setId(Integer.valueOf(tStrings[0]));
+			attend.setEmpid(Integer.valueOf(tStrings[1]));
+			attend.setAttendDate(DateFactory.getDate(tStrings[2]));
+			attend.setOvertime(Integer.valueOf(tStrings[3]));
+			attend.setDayoff(Integer.valueOf(tStrings[4]));
+			Integer result = this.addAttend(attend);
+			resultList.add(result);
+		}
+		return resultList;
 	}
 
 	public static void main(String[] args) {

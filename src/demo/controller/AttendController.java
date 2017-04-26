@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import demo.beans.Attend;
@@ -54,6 +56,34 @@ public class AttendController {
 		attend.setOvertime(Integer.valueOf(request.getParameter("overtime")));
 		attend.setDayoff(Integer.valueOf(request.getParameter("dayoff")));
 		this.attendService.addAttend(attend);
+		return new ModelAndView("redirect:/getAttendList");
+	}
+	
+	/**
+	 * http://localhost:8080/SimpleEmployeeSystem/addAttendBySQL
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/addAttendBySQL", method = RequestMethod.GET)
+	public String addAttendBySQL(HttpServletRequest request) {
+		return "AddAttendBySQL";
+	}
+	
+	/**
+	 * http://localhost:8080/SimpleEmployeeSystem/addAttendBySQLAdd
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/addAttendBySQLAdd", method = RequestMethod.POST)
+	public ModelAndView addAttendBySQLAdd(HttpServletRequest request) {	
+		String sql = request.getParameter("sql");
+		System.out.println("sql=" + sql);
+		try {
+			this.attendService.addAttendBySQL(sql);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new ModelAndView("redirect:/getAttendList");
 	}
 

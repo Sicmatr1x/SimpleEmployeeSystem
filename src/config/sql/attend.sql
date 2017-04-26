@@ -1,11 +1,13 @@
 --empid 工号
 --attendDate 出勤日期
---attendType 出勤类型(0正常上班，1加班,2请假)
+--overtime 加班天数
+--dayoff 请假天数
 CREATE TABLE attend(
 id int,
 empid int,
 attendDate DATE,
-attendType int,
+overtime int,
+dayoff int,
 PRIMARY KEY(id),
 key empid (empid),
 foreign key (empid) references employee(id)

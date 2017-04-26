@@ -156,7 +156,7 @@ key empid (empid),
 foreign key (empid) references employee(id)
 );
 
-insert into job values (1, 1, "BOSS", 5, 10000);
+insert into job values (1, 1, "BOSS", 5, 10000, "core");
 
 alter table job add department VARCHAR(14);
 
