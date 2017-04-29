@@ -49,7 +49,7 @@ public class AttendService {
 	
 	/**
 	 * 根据员工id来查询指定记录
-	 * @param id
+	 * @param empid
 	 * @return 查得到返回Attend，查不到返回null
 	 */
 	public List<Attend> getAttendByEmpId(int empid){
@@ -145,7 +145,7 @@ public class AttendService {
 	}
 	
 	/**
-	 * 根据员工id来删除记录
+	 * 根据记录id来删除记录
 	 * @param id
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */

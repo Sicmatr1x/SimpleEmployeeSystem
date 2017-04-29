@@ -83,6 +83,10 @@
 		
 		<div class="language-sql highlighter-rouge"><pre class="highlight">
 			<code>
+--id 工号
+--name 员工姓名
+--age 年龄
+--sex 性别
 <span class="kd">CREATE TABLE</span> employee(
 id <span class="kd">int</span>,
 name <span class="kd">VARCHAR(14)</span>,
@@ -99,11 +103,16 @@ sex <span class="kd">VARCHAR(1)</span>,
 		
 		<div class="language-sql highlighter-rouge"><pre class="highlight">
 			<code>
+--empid 工号
+--attendDate 出勤日期
+--overtime 加班天数
+--dayoff 请假天数
 <span class="kd">CREATE TABLE</span> attend(
 id <span class="kd">int</span>,
 empid <span class="kd">int</span>,
 attendDATE <span class="kd">DATE</span>,
-attendType <span class="kd">int</span>,
+overtime <span class="kd">int</span>,
+dayoff <span class="kd">int</span>,
 <span class="kd">PRIMARY KEY</span>(id),
 key empid (empid),
 <span class="kd">foreign key</span> (empid) <span class="kd">references</span> employee(id)
@@ -117,11 +126,14 @@ key empid (empid),
 
         <div class="language-sql highlighter-rouge"><pre class="highlight">
 			<code>
+--empid 工号
+--mounth 该月加班记录
+--bene 初始为0 该月津贴 每次+200
 <span class="kd">CREATE TABLE</span> benefit(
 id <span class="kd">int</span>,
 empid <span class="kd">int</span>,
 mounth <span class="kd">DATE</span>,
-overtime <span class="kd">int</span>,
+bene <span class="kd">int</span>,
 <span class="kd">PRIMARY KEY</span>(id),
 key empid (empid),
 <span class="kd">foreign key</span> (empid) <span class="kd">references</span> employee(id)
@@ -135,6 +147,11 @@ key empid (empid),
 
         <div class="language-sql highlighter-rouge"><pre class="highlight">
 			<code>
+--empid 工号
+--jobType 工种(BOSS老板:100000,PROGRAMMER程序员:10000,CLERK文员:5000)
+--department 部门(develop,core)
+--jobLeve 等级(1,2,3,4)
+--baseSalary 基本月工资(单位：元)
 <span class="kd">CREATE TABLE</span> job(
 id <span class="kd">int</span>,
 empid <span class="kd">int</span>,
@@ -155,6 +172,9 @@ key empid (empid),
 
         <div class="language-sql highlighter-rouge"><pre class="highlight">
 			<code>
+--empid 工号
+--mounth 月份 2017-04-01
+--salary 基本月工资
 <span class="kd">CREATE TABLE</span> salary(
 id <span class="kd">int</span>,
 empid <span class="kd">int</span>,

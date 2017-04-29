@@ -38,8 +38,8 @@ public class SalaryDAO {
 	}
 
 	/**
-	 * 根据id来查询指定员工
-	 * @param id 员工id
+	 * 根据id来查询指定记录
+	 * @param id 记录id
 	 * @return 查得到返回Salary，查不到返回null
 	 */
 	public Salary querySalaryById (int id){
@@ -64,7 +64,7 @@ public class SalaryDAO {
 	
 	/**
 	 * 根据员工id来查询指定记录
-	 * @param id 记录id
+	 * @param empid 员工id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
 	public List<Salary> querySalaryByEmpId (int empid){
@@ -109,7 +109,7 @@ public class SalaryDAO {
 	}
 	
 	/**
-	 * 插入员工
+	 * 插入记录
 	 * @param Salary
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -135,7 +135,7 @@ public class SalaryDAO {
 	}
 	
 	/**
-	 * 修改给定id的员工信息
+	 * 修改给定id的记录
 	 * @param Salary
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -161,7 +161,7 @@ public class SalaryDAO {
 	}
 	
 	/**
-	 * 根据员工id来删除员工
+	 * 根据记录id来删除记录
 	 * @param id
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */

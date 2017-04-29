@@ -7,6 +7,7 @@ public class Test {
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		try {
 			Date date = DateFactory.getDate("2017-01-01");

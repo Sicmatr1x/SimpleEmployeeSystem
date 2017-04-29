@@ -31,6 +31,7 @@ public class AwardDAO {
 	 * @param id 记录id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
+	@SuppressWarnings("deprecation")
 	public Award queryAwardByEmpId (int empid, Date year){
 //		System.out.println("queryAwardByEmpId:year=" + year.getYear());
 		DBAccess dbAccess = new DBAccess();

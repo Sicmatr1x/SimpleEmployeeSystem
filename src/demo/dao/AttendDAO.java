@@ -15,14 +15,11 @@ public class AttendDAO {
 	 * @return 
 	 */
 	public List<Attend> queryAllAttend (){
-//		System.out.println("开始建立数据库连接");
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
-			sqlSession = dbAccess.getSqlSession();
-//			System.out.println("数据库连接建立完毕" + sqlSession);
+			sqlSession = dbAccess.getSqlSession();;
 			// 执行查询
-//			System.out.println("执行查询");
 			return sqlSession.selectList("AttendMapper.queryAllAttend");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -111,7 +108,7 @@ public class AttendDAO {
 	}
 	
 	/**
-	 * 修改给定id的员工信息
+	 * 修改给定id的记录
 	 * @param Attend
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -137,7 +134,7 @@ public class AttendDAO {
 	}
 	
 	/**
-	 * 根据员工id来删除记录
+	 * 根据记录id来删除记录
 	 * @param id
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */

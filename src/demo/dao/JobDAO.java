@@ -15,14 +15,11 @@ public class JobDAO {
 	 * @return 
 	 */
 	public List<Job> queryAllJob (){
-//		System.out.println("开始建立数据库连接");
 		DBAccess dbAccess = new DBAccess();
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = dbAccess.getSqlSession();
-//			System.out.println("数据库连接建立完毕" + sqlSession);
 			// 执行查询
-//			System.out.println("执行查询");
 			return sqlSession.selectList("JobMapper.queryAllJob");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -37,8 +34,8 @@ public class JobDAO {
 	}
 
 	/**
-	 * 根据id来查询指定员工
-	 * @param id 员工id
+	 * 根据id来查询指定记录
+	 * @param id 记录id
 	 * @return 查得到返回Job，查不到返回null
 	 */
 	public Job queryJobById (int id){
@@ -62,7 +59,7 @@ public class JobDAO {
 	}
 	
 	/**
-	 * 根据员工id来查询指定记录
+	 * 根据记录id来查询指定记录
 	 * @param id 记录id
 	 * @return 查得到返回Attend，查不到返回null
 	 */
@@ -108,7 +105,7 @@ public class JobDAO {
 	}
 	
 	/**
-	 * 插入员工
+	 * 插入记录
 	 * @param Job
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -134,7 +131,7 @@ public class JobDAO {
 	}
 	
 	/**
-	 * 修改给定id的员工信息
+	 * 修改给定id的记录
 	 * @param Job
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */
@@ -160,7 +157,7 @@ public class JobDAO {
 	}
 	
 	/**
-	 * 根据员工id来删除员工
+	 * 根据记录id来删除记录
 	 * @param id
 	 * @return -1表示抛异常，其它为mybatis返回:1表示成功;0表示失败
 	 */

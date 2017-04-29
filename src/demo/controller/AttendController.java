@@ -35,7 +35,7 @@ public class AttendController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleAttendSystem/addAttend
+	 * http://localhost:8080/SimpleEmployeeSystem/addAttend?id=?&empid=?&attendDate=?&overtime=?&dayoff=?
 	 * 
 	 * @param request
 	 * @return
@@ -59,6 +59,7 @@ public class AttendController {
 	
 	/**
 	 * http://localhost:8080/SimpleEmployeeSystem/addAttendBySQL
+	 * 使用这条URL来返回调试用的批量添加attend记录的页面AddAttendBySQL.jsp
 	 * @param request
 	 * @return
 	 */
@@ -69,6 +70,7 @@ public class AttendController {
 	
 	/**
 	 * http://localhost:8080/SimpleEmployeeSystem/addAttendBySQLAdd
+	 * AddAttendBySQL.jsp页面上使用POST方法返回sql语句来批量添加attend记录POST到这里
 	 * @param request
 	 * @return
 	 */
@@ -86,7 +88,8 @@ public class AttendController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleAttendSystem/editAttend
+	 * http://localhost:8080/SimpleEmployeeSystem/editAttend
+	 * 
 	 * @param attend
 	 * @return
 	 */
@@ -108,7 +111,8 @@ public class AttendController {
 	}
 	
 	/**
-	 * http://localhost:8080/SimpleAttendSystem/deleteAttend
+	 * http://localhost:8080/SimpleEmployeeSystem/deleteAttend
+	 * 
 	 * @param id
 	 * @return
 	 */

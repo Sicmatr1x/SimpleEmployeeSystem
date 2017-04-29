@@ -20,7 +20,7 @@ public class JobController {
 	private JobService jobService;
 
 	/**
-	 * http://localhost:8080/SimpleJobSystem/getJobList
+	 * http://localhost:8080/SimpleEmployeeSystem/getJobList
 	 * 
 	 * @param request
 	 * @return
@@ -33,7 +33,7 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleJobSystem/addJob
+	 * http://localhost:8080/SimpleEmployeeSystem/addJob?id=?&empid=?&jobType=?&jobLevel=?&baseSalary=?&department=?
 	 * 
 	 * @param request
 	 * @return
@@ -52,7 +52,8 @@ public class JobController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleJobSystem/editJob
+	 * http://localhost:8080/SimpleEmployeeSystem/editJob?id=?&empid=?&jobType=?&jobLevel=?&baseSalary=?&department=?
+	 * 
 	 * @param job
 	 * @return
 	 */
@@ -70,7 +71,8 @@ public class JobController {
 	}
 	
 	/**
-	 * http://localhost:8080/SimpleJobSystem/deleteJob
+	 * http://localhost:8080/SimpleEmployeeSystem/deleteJob?id=?
+	 * 
 	 * @param id
 	 * @return
 	 */

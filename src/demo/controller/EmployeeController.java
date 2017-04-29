@@ -33,20 +33,20 @@ public class EmployeeController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleEmployeeSystem/addEmployee
+	 * http://localhost:8080/SimpleEmployeeSystem/addEmployee?id=?&name=?&age=?&sex=?
 	 * 
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public ModelAndView addEmployee(Employee employee,HttpServletRequest request) {
-		System.out.println(employee.getId() + ";" + employee.getName());
 		this.employeeService.addEmployee(employee);
 		return new ModelAndView("redirect:/getEmployeeList");
 	}
 
 	/**
-	 * http://localhost:8080/SimpleEmployeeSystem/editEmployee
+	 * http://localhost:8080/SimpleEmployeeSystem/editEmployee?id=?&name=?&age=?&sex=?
+	 * 
 	 * @param employee
 	 * @return
 	 */
@@ -57,7 +57,8 @@ public class EmployeeController {
 	}
 	
 	/**
-	 * http://localhost:8080/SimpleEmployeeSystem/deleteEmployee
+	 * http://localhost:8080/SimpleEmployeeSystem/deleteEmployee?id=?
+	 * 
 	 * @param id
 	 * @return
 	 */

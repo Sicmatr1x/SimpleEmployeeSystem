@@ -22,7 +22,7 @@ public class BenefitController {
 	private BenefitService benefitService;
 
 	/**
-	 * http://localhost:8080/SimpleBenefitSystem/getBenefitList
+	 * http://localhost:8080/SimpleEmployeeSystem/getBenefitList
 	 * 
 	 * @param request
 	 * @return
@@ -35,7 +35,7 @@ public class BenefitController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleBenefitSystem/addBenefit
+	 * http://localhost:8080/SimpleEmployeeSystem/addBenefit?id=?&empid=?&mounth=?&bene=?
 	 * 
 	 * @param request
 	 * @return
@@ -57,7 +57,7 @@ public class BenefitController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleBenefitSystem/editBenefit
+	 * http://localhost:8080/SimpleEmployeeSystem/editBenefit?id=?&empid=?&mounth=?&bene=?
 	 * @param benefit
 	 * @return
 	 */
@@ -78,7 +78,8 @@ public class BenefitController {
 	}
 	
 	/**
-	 * http://localhost:8080/SimpleBenefitSystem/deleteBenefit
+	 * http://localhost:8080/SimpleEmployeeSystem/deleteBenefit?id=?
+	 * 
 	 * @param id
 	 * @return
 	 */

@@ -23,7 +23,7 @@ public class SalaryController {
 	private SalaryService salaryService;
 
 	/**
-	 * http://localhost:8080/SimpleSalarySystem/getSalaryList
+	 * http://localhost:8080/SimpleEmployeeSystem/getSalaryList
 	 * 
 	 * @param request
 	 * @return
@@ -44,13 +44,14 @@ public class SalaryController {
 	@RequestMapping("/queryEmployeeSalary")
 	public String queryEmployeeSalary(HttpServletRequest request) {
 		int empid = Integer.valueOf(request.getParameter("empid"));
-		System.out.println("queryEmployeeSalary:" + empid);
+//		System.out.println("queryEmployeeSalary:" + empid);
 		List<Salary> list = salaryService.getSalaryByEmpId(empid);
 		request.getSession().setAttribute("list", list);
 		return "QueryEmployeeSalary";
 	}
 	
 	/**
+	 * http://localhost:8080/SimpleEmployeeSystem/querySalaryByDate?mounth=
 	 * 
 	 * @param request
 	 * @return
@@ -60,7 +61,7 @@ public class SalaryController {
 		Date mounth;
 		try {
 			mounth = DateFactory.getDate(request.getParameter("mounth"));
-			System.out.println("queryEmployeeSalary:" + mounth);
+//			System.out.println("queryEmployeeSalary:" + mounth);
 			List<Salary> list = salaryService.getSalaryByDate(mounth);
 			request.getSession().setAttribute("list", list);
 		} catch (ParseException e) {
@@ -79,7 +80,7 @@ public class SalaryController {
 	@RequestMapping("/queryDepartmentSalary")
 	public String queryDepartmentSalary(HttpServletRequest request) {
 		String department = request.getParameter("department");
-		System.out.println("queryDepartmentSalary:" + department);
+//		System.out.println("queryDepartmentSalary:" + department);
 		List<Salary> list = salaryService.getSalaryByDepartment(department);
 		request.getSession().setAttribute("list", list);
 		request.getSession().setAttribute("department", department);
@@ -87,7 +88,7 @@ public class SalaryController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleSalarySystem/addSalary
+	 * http://localhost:8080/SimpleEmployeeSystem/addSalary?id=?&empid=?&mounth=?&salary=?
 	 * 
 	 * @param request
 	 * @return
@@ -109,7 +110,8 @@ public class SalaryController {
 	}
 
 	/**
-	 * http://localhost:8080/SimpleSalarySystem/editSalary
+	 * http://localhost:8080/SimpleEmployeeSystem/editSalary?id=?&empid=?&mounth=?&salary=?
+	 * 
 	 * @param salary
 	 * @return
 	 */
@@ -130,7 +132,8 @@ public class SalaryController {
 	}
 	
 	/**
-	 * http://localhost:8080/SimpleSalarySystem/deleteSalary
+	 * http://localhost:8080/SimpleEmployeeSystem/deleteSalary?id=
+	 * 
 	 * @param id
 	 * @return
 	 */
