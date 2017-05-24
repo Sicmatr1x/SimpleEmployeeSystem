@@ -29,7 +29,6 @@
 		<a href="getBenefitList" class="btn">BenefitList</a>
 		<a href="getJobList" class="btn">JobList</a>
 		<a href="getSalaryList" class="btn">SalaryList</a>
-		<a href="addAttendBySQL" class="btn">addAttendBySQL</a>
 	</section>
 
 	<section class="main-content">
@@ -40,8 +39,7 @@
 		</p>
 
 		<p>
-			<a href="https://pages-themes.github.io/cayman/another-page">Link
-				to another page</a>.
+			<strong><a href="addAttendBySQL">addAttendBySQL</a></strong>
 		</p>
 
 		<p>There should be whitespace between paragraphs.</p>
@@ -64,9 +62,19 @@
 			<p>员工年终奖金的生成，员工的年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12；</p>
 			<p>能够查询单个员工的工资情况、每个部门的工资情况、按月的工资统计；</p>
 		</blockquote>
+		
+		<h2 id="header-2">
+			2.系统实现：
+		</h2>
+		
+		<blockquote>
+			<p>数据库：Mysql</p>
+			<p>编程语言Java：Mysql</p>
+			<p>系统框架：Spring+SpringMVC+MyBatis</p>
+		</blockquote>
 
 		<h2 id="header-2">
-			2.数据库要求：在数据库中至少应该包含下列数据表
+			3.数据库：
 		</h2>
 		
 		<blockquote>
@@ -184,6 +192,52 @@ salary <span class="kd">int</span>,
 key empid (empid),
 <span class="kd">foreign key</span> (empid) <span class="kd">references</span> employee(id)
 );
+            </code></pre>
+		</div>
+		
+		<h3 id="header-3">
+			6.触发器trigger
+		</h3>
+		
+		<h4 id="header-4">
+			1.增加attend记录同时增加benefit,salary记录
+		</h4>
+
+        <div class="language-sql highlighter-rouge"><pre class="highlight">
+			<code>
+create trigger attend_insert before insert on attend
+for each row
+begin
+    declare base int;
+    --
+    insert into benefit(empid,mounth,bene) values (new.empid,new.attendDate,new.overtime*200);
+    --
+    set base=(select baseSalary from job where empid=new.empid)-new.dayoff*200;
+    insert into salary(empid,mounth,salary) values (new.empid,new.attendDate,base);
+end;
+            </code></pre>
+		</div>
+		
+		<h4 id="header-4">
+			2.修改attend记录同时修改benefit,salary记录
+		</h4>
+		
+		<div class="language-sql highlighter-rouge"><pre class="highlight">
+			<code>
+create trigger attend_update before update on attend
+for each row
+begin
+    declare base int;
+    --
+    update benefit
+    set bene=new.overtime*200
+    where empid = new.empid and mounth=old.attendDate;
+    --
+    set base=(select baseSalary from job where empid=new.empid)-new.dayoff*200;
+    update salary
+    set salary=base
+    where empid = new.empid and mounth=old.attendDate;
+end;
             </code></pre>
 		</div>
 

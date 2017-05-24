@@ -24,7 +24,7 @@
     
     <!-- 添加 -->
     <insert id="addEmployee" parameterType="demo.beans.Employee">
-    	insert into employee(id,name,age,sex) values (#{id},#{name},#{age},#{sex})
+    	insert into employee(name,age,sex) values (#{name},#{age},#{sex})
     </insert>
     
     <!-- 根据主键修改 -->

@@ -57,10 +57,11 @@
 			<table class="tab1">
 				<tbody>
 					<form action="addEmployee" id="add" method="get">
-						工号： <input type="text" name="id" value="" /> 姓名： <input
-							type="text" name="name" value="" /> 年龄： <input type="text"
-							name="age" value="" /> 性别： <input type="text" name="sex"
-							value="" /> <input type="submit" class="tabSub" value="插入" />
+						<input type="text" name="id" value="0" "style="display:none"/>
+						 姓名： <input type="text" name="name" value="" />
+						年龄： <input type="text" name="age" value="" />
+						性别： <input type="text" name="sex" value="" />
+						<input type="submit" class="tabSub" value="插入" />
 					</form>
 				</tbody>
 			</table>
@@ -103,11 +104,7 @@
 
 				</table>
 				<div class='page fix'>
-					共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
-						href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
-						class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
-						type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
-						href='###' class='go'>GO</a>
+					共 <b><%=list.size()%></b> 条
 				</div>
 			</div>
 		</div>

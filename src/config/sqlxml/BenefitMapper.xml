@@ -22,7 +22,7 @@
     
     <!-- 添加 -->
     <insert id="addBenefit" parameterType="demo.beans.Benefit">
-    	insert into Benefit(id, empid, mounth, bene) values (#{id},#{empid},#{mounth},#{bene})
+    	insert into Benefit(empid, mounth, bene) values (#{empid},#{mounth},#{bene})
     </insert>
     
     <!-- 根据主键修改 -->

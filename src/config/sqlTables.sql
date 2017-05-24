@@ -1,10 +1,3 @@
-1.employee员工基本信息表；</br>
-2.attend员工考勤情况表：出勤时间、出勤类型、employee</br>
-3.benefit员工津贴信息表，反映员工的加班时间，加班类别、加班天数、津贴情况等：出勤时间、出勤类型、employee</br>
-4.job员工工种情况表，反映员工的工种、等级，基本工资等信息；
-5.salary员工月工资表。</br>
-
-```sql
 --id 工号
 --name 员工姓名
 --age 年龄
@@ -79,9 +72,9 @@ create trigger attend_insert before insert on attend
 for each row
 begin
     declare base int;
-    --
+    --计算bene该月津贴(每次加班+200)
     insert into benefit(empid,mounth,bene) values (new.empid,new.attendDate,new.overtime*200);
-    --
+    --计算每月的月工资salary(请假一次-200)
     set base=(select baseSalary from job where empid=new.empid)-new.dayoff*200;
     insert into salary(empid,mounth,salary) values (new.empid,new.attendDate,base);
 end;
@@ -91,11 +84,11 @@ create trigger attend_update before update on attend
 for each row
 begin
     declare base int;
-    --
+    --计算bene该月津贴(每次加班+200)
     update benefit
     set bene=new.overtime*200
     where empid = new.empid and mounth=old.attendDate;
-    --
+    --计算每月的月工资salary(请假一次-200)
     set base=(select baseSalary from job where empid=new.empid)-new.dayoff*200;
     update salary
     set salary=base
@@ -109,8 +102,28 @@ insert into employee(name,age,sex) values ('Tom', 25, 'M');
 insert into employee(name,age,sex) values ('Alice', 18, 'F');
 
 
-insert into attend(empid,attendDate,overtime,dayoff) values (4, "2017-04-01", 5,3);
-insert into attend(empid,attendDate,overtime,dayoff) values (4, "2017-05-01", 2,0);
-insert into attend(empid,attendDate,overtime,dayoff) values (4, "2017-05-01", 0,0);
-insert into attend(empid,attendDate,overtime,dayoff) values (4, "2017-07-01", 1,1);
-```
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-01-01", 5,3);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-02-01", 2,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-03-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-04-01", 0,1);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-05-01", 1,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-06-01", 4,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-07-01", 0,5);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-08-01", 10,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-09-01", 2,8);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-10-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-11-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (1, "2017-12-01", 0,0);
+
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-01-01", 5,3);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-02-01", 2,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-03-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-04-01", 0,1);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-05-01", 1,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-06-01", 4,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-07-01", 0,5);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-08-01", 10,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-09-01", 2,8);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-10-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-11-01", 0,0);
+insert into attend(empid,attendDate,overtime,dayoff) values (2, "2017-12-01", 0,0);

@@ -27,8 +27,8 @@
     
     <!-- 添加 -->
     <insert id="addJob" parameterType="demo.beans.Job">
-    	insert into Job(id, empid, jobType, jobLevel, baseSalary, department) 
-    	values (#{id},#{empid},#{jobType},#{jobLevel},#{baseSalary},#{department})
+    	insert into Job(empid, jobType, jobLevel, baseSalary, department) 
+    	values (#{empid},#{jobType},#{jobLevel},#{baseSalary},#{department})
     </insert>
     
     <!-- 根据主键修改 -->
