@@ -47,6 +47,12 @@ public class AttendController {
 		attend.setEmpid(Integer.valueOf(request.getParameter("empid")));
 		try {
 			attend.setAttendDate(DateFactory.getDate(request.getParameter("attendDate")));
+			List<Attend> list = attendService.getAttendByEmpId(attend.getEmpid());
+			for(Attend t : list){
+				if(t.getAttendDate().equals(attend.getAttendDate())){ // 若要添加的日期已存在
+					return new ModelAndView("redirect:/getAttendList");
+				}
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,12 +104,12 @@ public class AttendController {
 		Attend attend = new Attend();
 		attend.setId(Integer.valueOf(request.getParameter("id")));
 		attend.setEmpid(Integer.valueOf(request.getParameter("empid")));
-		try {
-			attend.setAttendDate(DateFactory.getDate(request.getParameter("attendDate")));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			attend.setAttendDate(DateFactory.getDate(request.getParameter("attendDate")));
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		attend.setOvertime(Integer.valueOf(request.getParameter("overtime")));
 		attend.setDayoff(Integer.valueOf(request.getParameter("dayoff")));
 		this.attendService.editAttend(attend);

@@ -57,7 +57,7 @@
 			<table class="tab1">
 				<tbody>
 					<form action="addBenefit" id="add" method="get">
-						编号：<input type="text" name="id" value="" />
+						<input type="text" name="id" value="0" "style="display:none"/>
 						 工号：<input type="text" name="empid" value="" />
 						该月加班记录：<input type="text" name="mounth" value="2017-01-01" />
 						该月津贴：<input type="text" name="bene" value="" />
@@ -103,11 +103,7 @@
 
 				</table>
 				<div class='page fix'>
-					共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
-						href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
-						class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
-						type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
-						href='###' class='go'>GO</a>
+					共 <b><%=list.size()%></b> 条
 				</div>
 			</div>
 		</div>

@@ -22,12 +22,12 @@
     
     <!-- 添加 -->
     <insert id="addAttend" parameterType="demo.beans.Attend">
-    	insert into Attend(id,empid,attendDate,overtime,dayoff) values (#{id},#{empid},#{attendDate},#{overtime},#{dayoff})
+    	insert into Attend(empid,attendDate,overtime,dayoff) values (#{empid},#{attendDate},#{overtime},#{dayoff})
     </insert>
     
     <!-- 根据主键修改 -->
     <update id="editAttend" parameterType="demo.beans.Attend">
-    	update Attend set attendDate=#{attendDate},overtime=#{overtime},dayoff=#{dayoff} where id=#{id}
+    	update Attend set overtime=#{overtime},dayoff=#{dayoff} where id=#{id}
     </update>
     
     <!-- 根据主键删除 -->

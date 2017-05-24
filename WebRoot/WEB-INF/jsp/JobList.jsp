@@ -26,7 +26,7 @@
     	var jobType=prompt("工种","BOSS,PROGRAMMER,CLERK");
     	var jobLevel=prompt("等级","1,2,3,4,5");
     	var baseSalary=prompt("基本月工资","10000");
-    	var department=prompt("部门","");
+    	var department=prompt("部门","develop,core");
     	if(jobType != null && jobType != "" && jobLevel != null && jobLevel != ""
     	 && department != null && department != "" && baseSalary != null && baseSalary != ""){
     		
@@ -61,11 +61,11 @@
 			<table class="tab1">
 				<tbody>
 					<form action="addJob" id="add" method="get">
-						编号：<input type="text" name="id" value="" />
+						<input type="text" name="id" value="0" "style="display:none"/>
 						 工号：<input type="text" name="empid" value="" />
 						工种：<input type="text" name="jobType" value="BOSS,PROGRAMMER,CLERK" />
 						等级：<input type="text" name="jobLevel" value="1,2,3,4,5" />
-						部门：<input type="text" name="department" value="" />
+						部门：<input type="text" name="department" value="develop,core" />
 						基本月工资：<input type="text" name="baseSalary" value="10000" />
 							 <input type="submit" class="tabSub" value="插入" />
 					</form>
@@ -113,11 +113,7 @@
 
 				</table>
 				<div class='page fix'>
-					共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
-						href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
-						class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
-						type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
-						href='###' class='go'>GO</a>
+					共 <b><%=list.size()%></b> 条
 				</div>
 			</div>
 		</div>

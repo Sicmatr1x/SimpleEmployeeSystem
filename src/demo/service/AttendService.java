@@ -7,9 +7,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import demo.beans.Attend;
-import demo.beans.Benefit;
-import demo.beans.Job;
-import demo.beans.Salary;
 import demo.dao.AttendDAO;
 import demo.dao.BenefitDAO;
 import demo.dao.JobDAO;
@@ -64,37 +61,6 @@ public class AttendService {
 	public int addAttend(Attend attend){
 		// 插入数据到Attend表
 		int addAttendResult = this.attendDAO.addAttend(attend);
-		
-		// 生成benefit新纪录的主键
-		List<Benefit> benefitList = this.benefitDAO.queryAllBenefit();
-		int benefitPrimyKey = benefitList.size() + 1;
-		
-		// 计算bene该月津贴(每次加班+200)
-		Benefit benefit = new Benefit();
-		benefit.setId(benefitPrimyKey);
-		benefit.setEmpid(attend.getEmpid());
-		benefit.setMounth(attend.getAttendDate());
-		benefit.setBene(attend.getOvertime() * 200);
-		
-		// 执行benefit插入
-		this.benefitDAO.addBenefit(benefit);
-		
-		// 生成salary新纪录的主键
-		List<Salary> salaryList = this.salaryDAO.queryAllSalary();
-		int salaryPrimyKey = salaryList.size() + 1;
-		
-		// 计算每月的月工资salary(请假一次-200)
-		List<Job> job = this.jobDAO.queryJobByEmpId(attend.getEmpid());
-		int sal = job.get(0).getBaseSalary() - attend.getDayoff() * 200;
-		Salary salary = new Salary();
-		salary.setId(salaryPrimyKey);
-		salary.setEmpid(attend.getEmpid());
-		salary.setMounth(attend.getAttendDate());
-		salary.setSalary(sal);
-		
-		// 执行salary插入
-		this.salaryDAO.addSalary(salary);
-		
 		return addAttendResult;
 	}
 	
@@ -106,41 +72,6 @@ public class AttendService {
 	public int editAttend(Attend attend){
 		// 修改数据到Attend表
 		int editAttendResult = this.attendDAO.editAttend(attend);
-		
-		// 根据empid和Date搜索指定Benefit
-		Benefit benefit = null;
-		List<Benefit> benefitList = this.benefitDAO.queryBenefitByEmpId(attend.getEmpid());
-		for(Benefit t : benefitList){
-			if(t.getMounth().equals(attend.getAttendDate())){
-				benefit = t;
-				break;
-			}
-		}
-		
-		// 重新计算bene该月津贴(每次加班+200)
-		benefit.setBene(attend.getOvertime() * 200);
-		
-		// 执行benefit修改
-		this.benefitDAO.editBenefit(benefit);
-		
-		// 根据empid和Date搜索指定Benefit
-		Salary salary = null;
-		List<Salary> salaryList = this.salaryDAO.querySalaryByEmpId(attend.getEmpid());
-		for(Salary t : salaryList){
-			if(t.getMounth().equals(attend.getAttendDate())){
-				salary = t;
-				break;
-			}
-		}
-		
-		// 重新计算bene该月津贴(每次加班+200)
-		List<Job> job = this.jobDAO.queryJobByEmpId(attend.getEmpid());
-		int sal = job.get(0).getBaseSalary() - attend.getDayoff() * 200;
-		salary.setSalary(sal);
-		
-		// 执行benefit修改
-		this.salaryDAO.editSalary(salary);
-		
 		return editAttendResult;
 	}
 	

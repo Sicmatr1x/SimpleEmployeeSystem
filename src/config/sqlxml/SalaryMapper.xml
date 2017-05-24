@@ -27,7 +27,7 @@
     
     <!-- 添加 -->
     <insert id="addSalary" parameterType="demo.beans.Salary">
-    	insert into Salary(id, empid, mounth, salary) values (#{id},#{empid},#{mounth},#{salary})
+    	insert into Salary(empid, mounth, salary) values (#{empid},#{mounth},#{salary})
     </insert>
     
     <!-- 根据主键修改 -->

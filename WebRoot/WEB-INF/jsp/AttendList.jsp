@@ -23,12 +23,11 @@
 <script type="text/javascript">
     
     function openEditWindow(id,empid){
-    	var attendDate=prompt("出勤日期","2017-01-01");
     	var overtime=prompt("加班天数","");
     	var dayoff=prompt("请假天数","");
-    	if(attendDate != null && attendDate != "" && overtime != null && overtime != "" && dayoff != null && dayoff != ""){
+    	if(overtime != null && overtime != "" && dayoff != null && dayoff != ""){
     		
-    		window.location.href='editAttend?id=' + id + '&empid=' + empid + '&attendDate=' + attendDate + '&overtime=' + overtime + '&dayoff=' + dayoff;
+    		window.location.href='editAttend?id=' + id + '&empid=' + empid + '&overtime=' + overtime + '&dayoff=' + dayoff;
     	}else{
     		alert("属性不能为空！");
     	}
@@ -58,7 +57,7 @@
 			<table class="tab1">
 				<tbody>
 					<form action="addAttend" id="add" method="get">
-						编号：<input type="text" name="id" value="" />
+						<input type="text" name="id" value="0" "style="display:none"/>
 						 工号：<input type="text" name="empid" value="" />
 						 出勤日期：<input type="text" name="attendDate" value="2017-01-01" />
 						加班天数：<input type="text" name="overtime" value="" />
@@ -107,11 +106,7 @@
 
 				</table>
 				<div class='page fix'>
-					共 <b><%=list.size()%></b> 条 <a href='###' class='first'>首页</a> <a
-						href='###' class='pre'>上一页</a> 当前第<span>1/1</span>页 <a href='###'
-						class='next'>下一页</a> <a href='###' class='last'>末页</a> 跳至&nbsp;<input
-						type='text' value='1' class='allInput w28' />&nbsp;页&nbsp; <a
-						href='###' class='go'>GO</a>
+					共 <b><%=list.size()%></b> 条
 				</div>
 			</div>
 		</div>
