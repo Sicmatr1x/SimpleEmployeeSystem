@@ -28,18 +28,18 @@
 >使用表job,手动录入工种(job)和基本工资(baseSalary)</br>
 
 加班津贴(benefit)管理，根据加班时间(overtime)和类型给予不同的加班津贴；</br>
->AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的benefit记录</br>
+>在执行AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的benefit记录，该操作由mysql中的2个触发器来实现</br>
 
 按照不同工种(job)的基本工资(baseSalary)情况、员工的考勤情况(attend)产生员工的每月的月工资；</br>
->AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的salary记录</br>
+>在执行AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的salary记录，该操作由mysql中的2个触发器来实现</br>
 
 员工年终奖金的生成，员工的年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12；</br>
 >使用Award作为Bean。没有保存到数据库，因为其数据可使用其它的表生成</br>
 
 能够查询单个员工的工资情况、每个部门的工资情况、按月的工资统计；</br>
->单个员工的工资情况QueryEmployeeSalary.jsp</br>
->每个部门的工资情况QueryDepartmentSalary.jsp</br>
->按月的工资统计QuerySalaryByDate.jsp</br>
+>单个员工的工资情况(QueryEmployeeSalary.jsp)</br>
+>每个部门的工资情况(QueryDepartmentSalary.jsp)</br>
+>按月的工资统计(QuerySalaryByDate.jsp)</br>
 
 
 ### 2、数据库要求：在数据库中至少应该包含下列数据表：

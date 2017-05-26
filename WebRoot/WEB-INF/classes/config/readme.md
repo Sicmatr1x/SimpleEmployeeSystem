@@ -28,18 +28,18 @@
 >使用表job,手动录入工种(job)和基本工资(baseSalary)</br>
 
 加班津贴(benefit)管理，根据加班时间(overtime)和类型给予不同的加班津贴；</br>
->AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的benefit记录</br>
+>在执行AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的benefit记录，该操作由mysql中的2个触发器来实现</br>
 
 按照不同工种(job)的基本工资(baseSalary)情况、员工的考勤情况(attend)产生员工的每月的月工资；</br>
->AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的salary记录</br>
+>在执行AttendService.addAttend和AttendService.editAttend在插入/修改考勤记录的同时会自动插入/修改一条对应的salary记录，该操作由mysql中的2个触发器来实现</br>
 
 员工年终奖金的生成，员工的年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12；</br>
 >使用Award作为Bean。没有保存到数据库，因为其数据可使用其它的表生成</br>
 
 能够查询单个员工的工资情况、每个部门的工资情况、按月的工资统计；</br>
->单个员工的工资情况QueryEmployeeSalary.jsp</br>
->每个部门的工资情况QueryDepartmentSalary.jsp</br>
->按月的工资统计QuerySalaryByDate.jsp</br>
+>单个员工的工资情况(QueryEmployeeSalary.jsp)</br>
+>每个部门的工资情况(QueryDepartmentSalary.jsp)</br>
+>按月的工资统计(QuerySalaryByDate.jsp)</br>
 
 
 ### 2、数据库要求：在数据库中至少应该包含下列数据表：
@@ -49,164 +49,6 @@
 3.benefit员工津贴信息表，反映员工的加班时间，加班类别、加班天数、津贴情况等：出勤时间、出勤类型、employee</br>
 4.job员工工种情况表，反映员工的工种、等级，基本工资等信息；employee</br>
 5.salary员工月工资表。</br>
-
-```sql
-mysql -uroot
-use employee;
-SHOW TABLES;
-```
-
-1.employee员工基本信息表；</br>
-
-```sql
---id 工号
---name 员工姓名
---age 年龄
---sex 性别
-CREATE TABLE employee(
-id int,
-name VARCHAR(14),
-age int,
-sex VARCHAR(1),
-PRIMARY KEY(id)
-);
-
-select * from employee;
-
-insert into employee values (1, 'Tom', 25, 'M');
-insert into employee(name,age,sex) values ('Tom', 25, 'M');
-insert into employee(name,age,sex) values ('Alice', 18, 'F');
-insert into employee values (2, 'Alice', 18, 'F');
-
-delete from employee where id=3;
-```
-
-2.attend员工考勤情况表：出勤时间、出勤类型、employee</br>
-
-```sql
---empid 工号
---attendDate 出勤日期
---overtime 加班天数
---dayoff 请假天数
-CREATE TABLE attend(
-id int,
-empid int,
-attendDate DATE,
-overtime int,
-dayoff int,
-PRIMARY KEY(id),
-key empid (empid),
-foreign key (empid) references employee(id)
-);
-
-select * from attend;
-
-DROP TABLE attend;
-
-insert into attend values (1, 1, "2017-04-15", 5,3);
-```
-
-```sql
-#定义触发器
-drop trigger if exists amerce_update;
-
-delimiter $
-create trigger benefit_insert before insert on attend
-referencing new row as nrow
-for each row
-begin
-
-    insert into 'benefit' values (1,nrow.empid,nrow.attendDate,nrow.overtime*200);
-end;
-$
-```
-
-3.benefit员工津贴信息表，反映员工的加班时间，加班类别、加班天数、津贴情况等：出勤时间、出勤类型、employee</br>
-
-```sql
---empid 工号
---mounth 该月加班记录
---bene 初始为0 该月津贴 每次+200
-CREATE TABLE benefit(
-id int,
-empid int,
-mounth DATE, 
-bene int,
-PRIMARY KEY(id),
-key empid (empid),
-foreign key (empid) references employee(id)
-);
-
-select * from benefit;
-
-DROP TABLE benefit;
-
-insert into benefit values (1, 1, "2017-04-01", 500);
-```
-
-4.job员工工种情况表，反映员工的工种、等级，基本工资等信息；
-
-```sql
---empid 工号
---jobType 工种(BOSS老板:100000,PROGRAMMER程序员:10000,CLERK文员:5000)
---department 部门(develop,core)
---jobLeve 等级(1,2,3,4)
---baseSalary 基本月工资(单位：元)
-CREATE TABLE job(
-id int,
-empid int,
-jobType VARCHAR(14),
-jobLevel int,
-baseSalary int,
-department VARCHAR(14),
-PRIMARY KEY(id),
-key empid (empid),
-foreign key (empid) references employee(id)
-);
-
-insert into job values (1, 1, "BOSS", 5, 10000, "core");
-
-alter table job add department VARCHAR(14);
-
-update job
-set baseSalary = 100000
-where id = 1;
-
-select employee.id as eid, name, age, sex, job.id as jid, jobType, jobLevel, baseSalary
-from employee, job
-where employee.id = job.empid;
-```
-
-5.salary员工月工资表。</br>
-
-```sql
---empid 工号
---mounth 月份 2017-04-01
---salary 基本月工资
-CREATE TABLE salary(
-id int,
-empid int,
-mounth DATE,
-salary int,
-PRIMARY KEY(id),
-key empid (empid),
-foreign key (empid) references employee(id)
-);
-
-select * from salary
-
-insert into salary values (1, 1, "2017-04-01", 100000);
-```
-
-月工资=基本月工资+该月津贴</br>
-年终奖金计算公式＝（员工本年度的工资总和＋津贴的总和）/12</br>
-年终奖算到13月津贴里(待定)</br>
-
-```sql
-select employee.id as eid, name, age, sex, job.id as jid, jobType, jobLevel, baseSalary
-from employee, job
-where employee.id = job.empid;
-```
 
 
 ### 3、本课题设计的基本要求：
